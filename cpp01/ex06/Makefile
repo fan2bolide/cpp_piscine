@@ -1,6 +1,6 @@
-NAME =		harl_2_1
+NAME =		harlFilter
 
-SRC =		harl.cpp main.cpp
+SRC =		Harl.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 .PHONY: all clean fclean re
@@ -8,7 +8,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(OBJ)
 	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 
-OBJ: $(SRC)
+%.o: %.cpp
 	c++ -Wall -Wextra -Werror -c $(SRC) -o $(OBJ)
 
 clean:
