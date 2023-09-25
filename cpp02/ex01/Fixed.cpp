@@ -36,7 +36,7 @@ Fixed::Fixed(const int integer_value) {
 }
 
 Fixed::Fixed(const float float_value) {
-	_value = roundf(float_value * (1 << _fractional_bits));
+	_value = (int)roundf(float_value * (1 << _fractional_bits));
 }
 
 float Fixed::toFloat(void) const {
