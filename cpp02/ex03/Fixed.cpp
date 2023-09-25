@@ -82,16 +82,16 @@ Fixed &Fixed::operator-(const Fixed &other) {
 }
 
 Fixed &Fixed::operator*(const Fixed &other) {
-	_value = roundf((float)_value * other.getRawBits() / (1 << _fractional_bits));
+	_value = (int)roundf((float)_value * other.getRawBits() / (1 << _fractional_bits));
 	return *this;
 }
 
 Fixed &Fixed::operator/(const Fixed &other) {
-	_value = roundf((float)_value / other.getRawBits() * (1 << _fractional_bits));
+	_value = (int)roundf((float)_value / (float)other.getRawBits() * (1 << _fractional_bits));
 	return *this;
 }
 //pre-increment
-Fixed &Fixed::operator++(void) {
+Fixed &Fixed::operator++() {
 	this->_value++;
 	return *this;
 }
@@ -102,7 +102,7 @@ Fixed Fixed::operator++(int) {
 	return tmp;
 }
 //pre-decrement
-Fixed &Fixed::operator--(void) {
+Fixed &Fixed::operator--() {
 	this->_value--;
 	return *this;
 }
