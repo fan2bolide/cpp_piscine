@@ -1,9 +1,9 @@
 NAME =		fixed
 
 SRC =		Fixed.cpp\
+			bsp.cpp\
 			main.cpp\
-			Point.cpp\
-			bsp.cpp
+			Point.cpp
 
 OBJ = $(SRC:.cpp=.o)
 .PHONY: all clean fclean re

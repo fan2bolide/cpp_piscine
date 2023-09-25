@@ -10,10 +10,11 @@ private:
 	const Fixed _y;
 public:
 	Point();
-	Point(float x, float y);
+	Point(const float x, const float y);
 	Point(Point &point);
-	Fixed getX();
-	Fixed getY();
+	Point(Point const &point);
+	Fixed getX() const;
+	Fixed getY() const;
 	~Point();
 	Point &operator=(Point &other);
 };
