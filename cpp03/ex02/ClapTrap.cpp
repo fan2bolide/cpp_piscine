@@ -12,7 +12,17 @@ ClapTrap::ClapTrap(const std::string &name) : _name(name) {
 	_attackDamage = 0;
 }
 
-std::string ClapTrap::getName() {
+ClapTrap::ClapTrap(const ClapTrap &from) {
+	_name = from.getName();
+	_hitPoints = 10;
+	_energyPoints = 10;
+	_attackDamage = 0;
+}
+
+ClapTrap::~ClapTrap() {
+}
+
+std::string ClapTrap::getName() const {
 	return (_name);
 }
 
@@ -56,9 +66,5 @@ unsigned int ClapTrap::getEnergyPoints() const {
 
 unsigned int ClapTrap::getAttackDamage() const {
 	return _attackDamage;
-}
-
-ClapTrap::ClapTrap(const ClapTrap &from) {
-
 }
 

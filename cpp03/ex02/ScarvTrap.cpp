@@ -1,15 +1,19 @@
 #include "ScarvTrap.hpp"
 
 ScarvTrap::ScarvTrap() {
-	setEnergyPoints(100);
+	setHitPoints(100);
 	setEnergyPoints(50);
 	setAttackDamage(20);
 }
 
 ScarvTrap::ScarvTrap(const std::string &name) : ClapTrap(name){
-	setEnergyPoints(100);
+	setHitPoints(100);
 	setEnergyPoints(50);
 	setAttackDamage(20);
+}
+
+ScarvTrap::ScarvTrap(const ScarvTrap &from)  : ClapTrap(from) {
+
 }
 
 void ScarvTrap::attack(const std::string &target) {
@@ -22,6 +26,10 @@ void ScarvTrap::takeDamage(unsigned int amount) {
 }
 
 void ScarvTrap::beRepaired(unsigned int amount) {
-	std::cout << "ClapTrap " << this->getName() << " is being repaired of " << amount << " hit points!" << std::endl;
+	std::cout << "ScarvTrap " << this->getName() << " is being repaired of " << amount << " hit points!" << std::endl;
 	this->setHitPoints(this->getHitPoints() - amount);
 }
+
+ScarvTrap::~ScarvTrap() {
+}
+
