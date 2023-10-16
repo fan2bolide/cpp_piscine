@@ -17,4 +17,6 @@ int main()
 	bipbop.attack("bobby");
 	bobby.takeDamage(bipbop.getAttackDamage());
 	bobby.beRepaired(100);
+	bloup.attack("bobby");
+	bobby.takeDamage(bloup.getAttackDamage());
 }
