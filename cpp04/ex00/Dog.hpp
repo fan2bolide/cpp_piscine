@@ -8,6 +8,7 @@ private:
 public:
 	Dog();
 	explicit Dog(const std::string &name);
+	void makeSound();
 };
 
 #endif

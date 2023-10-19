@@ -8,6 +8,7 @@ private:
 public:
 	Cat();
 	explicit Cat(const std::string &name);
+	void makeSound();
 };
 
 #endif
