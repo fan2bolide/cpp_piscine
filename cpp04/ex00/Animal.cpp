@@ -12,7 +12,7 @@ Animal::Animal(std::string type, std::string name) : type(type), _name(name){
 }
 
 Animal::~Animal() {
-
+	std::cout << this->type << " " << this->_name << " destroyed." << std::endl;
 }
 
 void Animal::announce() {
