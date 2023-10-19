@@ -5,10 +5,9 @@
 
 class Dog : public Animal {
 private:
-
 public:
 	Dog();
-	Dog(const std::string &name);
+	explicit Dog(const std::string &name);
 };
 
 #endif

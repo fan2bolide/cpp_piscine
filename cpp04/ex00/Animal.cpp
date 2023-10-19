@@ -7,15 +7,11 @@ Animal::Animal(std::string type) : type(type){
 
 }
 
-Animal::~Animal() {
-
-}
-
-void Animal::setType(std::string type) {
-	this->type = type;
-}
-
 Animal::Animal(std::string type, std::string name) : type(type), _name(name){
+
+}
+
+Animal::~Animal() {
 
 }
 

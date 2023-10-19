@@ -9,11 +9,9 @@ private:
 	std::string _name;
 public:
 	Animal();
-	Animal(std::string type);
+	explicit Animal(std::string type);
 	Animal(std::string type, std::string name);
 	void announce();
-	void setType(std::string type);
-	void setName();
 	~Animal();
 };
 #endif
