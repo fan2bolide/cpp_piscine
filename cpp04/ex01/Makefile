@@ -1,6 +1,8 @@
 NAME = ex01
 
-FLAGS =
+CPP = c++
+
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRC = ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp ./main.cpp
 HDR = ./Animal.hpp ./Dog.hpp ./Cat.hpp ./Brain.hpp
@@ -10,10 +12,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(SRC) $(OBJ) $(HDR)
-	c++ -std=c++98 -Wall -Wextra -Werror $(FLAGS) $(OBJ) -o $(NAME)
+	$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	c++ -std=c++98 -Wall -Wextra -Werror $(FLAGS) -c $< -o $@
+	$(CPP) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
@@ -21,6 +23,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
+re: fclean all clean re
 
 .PHONY : all clean
