@@ -10,11 +10,15 @@ private:
 public:
 	Animal();
 	explicit Animal(const std::string& type);
+	Animal(const Animal &other);
 	Animal(const std::string& type, const std::string& name);
 
 	const std::string &getType() const;
 
+	Animal &operator=(const Animal &other);
+
 	void announce();
-	~Animal();
+	virtual ~Animal();
+	virtual void makeSound() = 0;
 };
 #endif

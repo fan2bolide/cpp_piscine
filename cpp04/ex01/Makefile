@@ -1,9 +1,9 @@
-NAME = ex00
+NAME = ex01
 
 FLAGS =
 
-SRC = Animal.cpp Dog.cpp Cat.cpp main.cpp
-HDR = Animal.hpp Dog.hpp Cat.hpp
+SRC = ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp ./main.cpp
+HDR = ./Animal.hpp ./Dog.hpp ./Cat.hpp ./Brain.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
