@@ -4,8 +4,8 @@ CPP = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
-HDR = Cure.hpp Ice.hpp AMateria.hpp
+SRC = Character.cpp Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
+HDR = Character.hpp Cure.hpp Ice.hpp AMateria.hpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
