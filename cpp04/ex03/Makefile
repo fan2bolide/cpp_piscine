@@ -1,12 +1,11 @@
-NAME = ex02
+NAME = ex03
 
 CPP = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp ./main.cpp
-HDR = ./Animal.hpp ./Dog.hpp ./Cat.hpp ./Brain.cpp
-
+SRC = Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
+HDR = Cure.hpp Ice.hpp AMateria.hpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
