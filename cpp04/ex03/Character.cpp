@@ -6,27 +6,33 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:29:03 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 11:29:08 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:58:41 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "Floor.hpp"
+
+Floor *Character::_floor = new Floor();
 
 Character::Character() {
 	for (int i = 0; i < 4; i++) {
-		slots[i] = NULL;
+		_slots[i] = NULL;
 	}
 }
 
 Character::Character(const std::string &name) : _name(name) {
+	for (int i = 0; i < 4; i++) {
+		_slots[i] = NULL;
+	}
 }
 
 Character::Character(const Character &other) {
 	this->_name = other._name;
 	for (int i = 0;i < 4;i++)
 	{
-		if (other.slots[i])
-			this->slots[i] = other.slots[i]->clone();
+		if (other._slots[i])
+			this->_slots[i] = other._slots[i]->clone();
 	}
 }
 
@@ -34,9 +40,14 @@ Character::~Character() {
 	int i = 0;
 	while (i < 4)
 	{
-		if (slots[i])
-			delete slots[i];
+		if (_slots[i])
+			delete _slots[i];
 		++i;
+	}
+	if (_floor)
+	{
+		delete _floor;
+		_floor = NULL;
 	}
 }
 
@@ -47,25 +58,32 @@ const std::string &Character::getName() const {
 void Character::use(int idx, ICharacter &target) {
 	if (idx < 0 || idx > 3)
 		return ;
-	std::cout << _name << " is using a " << slots[idx]->getType() << " Materia" << std::endl;
-	slots[idx]->use(target);
+	std::cout << _name << " is using a " << _slots[idx]->getType() << " Materia" << std::endl;
+	_slots[idx]->use(target);
 }
-
 
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
-	slots[idx] = NULL;
+	if (_slots[idx])
+		_floor->addMateria(_slots[idx]);
+	_slots[idx] = NULL;
 }
+//todo add some operator overload
+
 
 void Character::equip(AMateria *m) {
 	int i;
 
 	for (i = 0 ; i < 4 ; i++)
 	{
-		if (!slots[i])
-			slots[i] = m;
+		if (!_slots[i])
+		{
+			_slots[i] = m;
+			std::cout << _name << " equipped a " << m->getType() << std::endl;
+			return ;
+		}
 	}
 	if (i == 4)
-		std::cout << "All slots are already taken." << std::endl;
+		std::cout << "All _slots are already taken." << std::endl;
 }

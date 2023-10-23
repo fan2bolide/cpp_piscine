@@ -2,7 +2,7 @@ NAME = ex03
 
 CPP = c++
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRC = Floor.cpp Character.cpp Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
 HDR = Floor.hpp Character.hpp Cure.hpp Ice.hpp AMateria.hpp

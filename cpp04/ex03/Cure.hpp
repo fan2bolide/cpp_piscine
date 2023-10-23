@@ -9,6 +9,7 @@ public:
 	Cure();
 	Cure(const Cure &other);
 	AMateria* clone() const;
+	//todo add some operator overload
 	void use(ICharacter &target);
 };
 
