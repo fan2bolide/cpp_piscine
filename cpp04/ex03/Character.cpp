@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:29:03 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 18:46:00 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:23:08 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 Floor *Character::_floor = new Floor();
 
-Character::Character() {
+Character::Character() : _slots() {
 	for (int i = 0; i < 4; i++) {
 		_slots[i] = NULL;
 	}
 }
 
-Character::Character(const std::string &name) : _name(name) {
+Character::Character(const std::string &name) : _name(name), _slots() {
 	for (int i = 0; i < 4; i++) {
 		_slots[i] = NULL;
 	}
 }
 
-Character::Character(const Character &other) {
+Character::Character(const Character &other) : _slots() {
 	this->_name = other._name;
 	for (int i = 0;i < 4;i++)
 	{
@@ -65,7 +65,7 @@ void Character::use(int idx, ICharacter &target) {
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3)
 		return ;
-	if (_slots[idx])
+	if (_slots[idx] && _floor)
 		_floor->addMateria(_slots[idx]);
 	_slots[idx] = NULL;
 }
