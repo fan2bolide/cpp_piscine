@@ -4,8 +4,8 @@ CPP = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = Character.cpp Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
-HDR = Character.hpp Cure.hpp Ice.hpp AMateria.hpp
+SRC = Floor.cpp Character.cpp Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
+HDR = Floor.hpp Character.hpp Cure.hpp Ice.hpp AMateria.hpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -22,6 +22,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all clean re
+re: fclean all
 
-.PHONY : all clean
+.PHONY : all clean fclean re

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   Floor.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 11:29:11 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 11:29:12 by bajeanno         ###   ########.fr       */
+/*   Created: 2023/10/23 11:29:02 by bajeanno          #+#    #+#             */
+/*   Updated: 2023/10/23 11:29:02 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-#define CHARACTER_HPP
-#include "ICharacter.hpp"
-#include "Floor.hpp"
+#ifndef FLOOR_HPP
+#define FLOOR_HPP
+#include "AMateria.hpp"
 
-class Character : public ICharacter{
+class Floor {
 private:
-	std::string _name;
-	AMateria* slots[4];
-	static Floor floor;
+	AMateria *_materia;
+	Floor *_next;
 public:
-	Character();
-	Character(const std::string &name);
-	Character(const Character &other);
-	~Character();
-	void equip(AMateria* m);
-	void unequip(int idx);
-	const std::string &getName() const;
-	void use(int idx, ICharacter &target);
+	Floor();
+	Floor(AMateria *materia);
+	~Floor();
+	void addMateria(AMateria *materia);
 };
 
 
