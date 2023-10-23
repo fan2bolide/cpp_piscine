@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:29:03 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 18:45:38 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:46:00 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void Character::equip(AMateria *m) {
 		}
 	}
 	if (i == 4)
-		std::cout << "All _slots are already taken." << std::endl;
+		std::cout << "All slots are already taken." << std::endl;
 }
 
 Character &Character::operator=(const Character &other) {
