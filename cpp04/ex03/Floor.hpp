@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:29:02 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 15:21:34 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:06:24 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Floor(const Floor &other);
 	Floor(AMateria *materia);
 	~Floor();
-	//todo add some operator overload
+	Floor &operator=(const Floor &other);
 	void addMateria(AMateria *materia);
 };
 

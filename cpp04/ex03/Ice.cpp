@@ -13,4 +13,10 @@ AMateria *Ice::clone() const {
 void Ice::use(ICharacter &target) {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
-//todo add some operator overload
+
+Ice &Ice::operator=(const Ice &other) {
+	if (this == &other)
+		return *this;
+	this->type = other.type;
+	return *this;
+}

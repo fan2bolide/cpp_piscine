@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:29:03 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 17:58:41 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:45:38 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void Character::unequip(int idx) {
 		_floor->addMateria(_slots[idx]);
 	_slots[idx] = NULL;
 }
-//todo add some operator overload
-
 
 void Character::equip(AMateria *m) {
 	int i;
@@ -86,4 +84,15 @@ void Character::equip(AMateria *m) {
 	}
 	if (i == 4)
 		std::cout << "All _slots are already taken." << std::endl;
+}
+
+Character &Character::operator=(const Character &other) {
+	if (this == &other)
+		return *this;
+	for (int i = 0;i < 4;i++) {
+		if (other._slots[i])
+			_slots[i] = other._slots[i]->clone();
+	}
+	this->_name = other._name;
+	return *this;
 }

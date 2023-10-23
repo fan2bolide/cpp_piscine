@@ -3,13 +3,11 @@
 #include "AMateria.hpp"
 
 class Cure : public AMateria {
-private:
-	std::string _name;
 public:
 	Cure();
 	Cure(const Cure &other);
+	Cure &operator=(const Cure &other);
 	AMateria* clone() const;
-	//todo add some operator overload
 	void use(ICharacter &target);
 };
 

@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:28:55 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/10/23 17:59:56 by bajeanno         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:03:28 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ Floor::Floor(const Floor &other) {
 	_materia = other._materia->clone();
 	if (other._next)
 		_next = new Floor(*other._next);
+}
+
+Floor &Floor::operator=(const Floor &other) {
+	if (this == &other)
+		return *this;
+	this->_next = other._next;
+	this->_materia = other._materia;
+	return *this;
 }
