@@ -105,7 +105,7 @@ void PhoneBook::search_contact()
 	while (input.length() > 1 || input.length() == 0 || (input[0] < '0' || input[0] > '9'))
 	{
 		std::cout << "that entry is not a number in range 0-7, try again:";
-		std::cin >> input;
+		input = retry_prompt();
 	}
 	contacts[input[0] - '0'].print();
 }

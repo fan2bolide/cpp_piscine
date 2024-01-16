@@ -1,34 +1,5 @@
 #include <iostream>
 
-int ft_write(char *str)
-{
-	int i = 0;
-	if (!str)
-		std::cout << "(null)" << std::endl;
-	while (str[i])
-	{
-		std::cout << str[i];
-		i++;
-	}
-	return (i);
-}
-
-int ft_write_upcase(char *str)
-{
-	int i = 0;
-	if (!str)
-		std::cout << "(null)" << std::endl;
-	while (str[i])
-	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			std::cout << (char)(str[i] - ('a' - 'A'));
-		else
-			std::cout << str[i];
-		i++;
-	}
-	return (i);
-}
-
 int main(int argc, char **argv)
 {
 	if (argc == 1)
@@ -36,11 +7,10 @@ int main(int argc, char **argv)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (0);
 	}
-	while (argc > 1)
-	{
-		argv++;
-		ft_write_upcase(*argv);
-		argc--;
+	for (int i = 1; argv[i]; i++) {
+		for (int j = 0;argv[i][j] ; j++) {
+			std::cout << static_cast<char>(std::toupper(argv[i][j]));
+		}
 	}
 	std::cout << std::endl;
 	return 0;

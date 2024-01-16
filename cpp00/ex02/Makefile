@@ -3,11 +3,11 @@ VERSION = 0.1.0
 SRC =	tests.cpp\
 		Account.cpp\
 
-
 OBJ = $(SRC:.cpp=.o)
-.PHONY: all clean fclean re
 
-all : $(OBJ)
+all: $(NAME)
+
+$(NAME) : $(OBJ)
 	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 
 OBJ: $(SRC)
@@ -23,3 +23,5 @@ re: fclean all
 
 run: re
 	./$(NAME)
+
+.PHONY: all clean fclean re
