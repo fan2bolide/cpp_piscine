@@ -1,6 +1,6 @@
 NAME = phonebook
 VERSION = 1.0
-SRC =	Phonebook.cpp\
+SRC =	PhoneBook.cpp\
 		Contact.cpp\
 		main.cpp \
 

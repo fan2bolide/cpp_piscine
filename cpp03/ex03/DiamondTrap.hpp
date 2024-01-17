@@ -12,6 +12,8 @@ public:
 	DiamondTrap(const std::string &name);
 	~DiamondTrap();
 
+
+	//todo replace with <using> keyword
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
