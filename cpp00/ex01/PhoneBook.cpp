@@ -1,8 +1,6 @@
 #include "PhoneBook.h"
 
-PhoneBook::PhoneBook() : index(0)
-{
-
+PhoneBook::PhoneBook() : index(0) {
 }
 
 void PhoneBook::add_contact()
@@ -101,11 +99,13 @@ void PhoneBook::search_contact()
 
 	print();
 	std::cout << "enter the index to the contact you want:";
+	std::cin.clear();
 	std::cin >> input;
-	while (input.length() > 1 || input.length() == 0 || (input[0] < '0' || input[0] > '9'))
+	while (input.length() != 1 || (input[0] < '0' || input[0] > '7'))
 	{
 		std::cout << "that entry is not a number in range 0-7, try again:";
 		input = retry_prompt();
 	}
 	contacts[input[0] - '0'].print();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

@@ -25,7 +25,7 @@ int main()
 		{
 			return (0);
 		}
-		else{
+		else {
 			std::cout << "Command entered : " << input_command <<std::endl;
 			std::cout << "Unknown command, please retry" << std::endl;
 		}
