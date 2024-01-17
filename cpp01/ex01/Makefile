@@ -2,11 +2,14 @@ NAME =		zombie
 VERSION =	0.1.0
 SRC =		Zombie.cpp\
 			main.cpp\
+			zombieHorde.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 .PHONY: all clean fclean re
 
-all : $(OBJ)
+all : $(NAME)
+
+$(NAME) : $(OBJ)
 	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 
 OBJ: $(SRC)
@@ -22,3 +25,5 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY : all re fclean clean run

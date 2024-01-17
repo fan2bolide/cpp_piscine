@@ -8,7 +8,9 @@ SRC =		Zombie.cpp\
 OBJ = $(SRC:.cpp=.o)
 .PHONY: all clean fclean re
 
-all : $(OBJ)
+all : $(NAME)
+
+$(NAME) : $(OBJ)
 	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
 
 OBJ: $(SRC)
@@ -24,3 +26,5 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY : all clean fclean re run

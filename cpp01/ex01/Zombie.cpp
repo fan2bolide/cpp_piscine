@@ -1,13 +1,11 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-{
-
+Zombie::Zombie() {
+	std::cout << "default constructor called" << std::endl;
 }
 
-Zombie::Zombie(std::string name)
-{
-	_name = name;
+Zombie::Zombie(std::string name) : _name(name) {
+	std::cout << "string constructor called" << std::endl;
 }
 
 Zombie::~Zombie() {
@@ -17,18 +15,6 @@ Zombie::~Zombie() {
 void Zombie::setName(std::string name)
 {
 	_name = name;
-}
-
-Zombie	*zombieHorde( int N, std::string name )
-{
-	Zombie	*zombies;
-	int		i;
-
-	i = 0;
-	zombies = new Zombie[N];
-	while (i < N)
-		zombies[i++].setName(name);
-	return zombies;
 }
 
 void Zombie::announce()

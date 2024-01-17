@@ -1,13 +1,11 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-{
-
+Zombie::Zombie() {
+	std::cout << "default constructor called" << std::endl;
 }
 
-Zombie::Zombie(std::string name)
-{
-	_name = name;
+Zombie::Zombie(std::string name) : _name(name) {
+	std::cout << "string constructor called" << std::endl;
 }
 
 void Zombie::announce()
