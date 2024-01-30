@@ -40,6 +40,7 @@ std::string PhoneBook::retry_prompt()
 {
 	std::string input;
 
+
 	while (input.empty())
 	{
 		if (std::cin.eof())
@@ -100,12 +101,20 @@ void PhoneBook::search_contact()
 	print();
 	std::cout << "enter the index to the contact you want:";
 	std::cin.clear();
-	std::cin >> input;
+	std::getline(std::cin, input);
 	while (input.length() != 1 || (input[0] < '0' || input[0] > '7'))
 	{
-		std::cout << "that entry is not a number in range 0-7, try again:";
-		input = retry_prompt();
+		if (std::cin.eof())
+		{
+			std::cout << std::endl << "EOF detected" << std::endl;
+			exit(1);
+		}
+		if (input.empty())
+			std::cout << "this field can't be empty, please try again: ";
+		else
+			std::cout << "that entry is not a number in range 0-7, try again: ";
+		std::cin.clear();
+		std::getline(std::cin, input);
 	}
 	contacts[input[0] - '0'].print();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
