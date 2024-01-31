@@ -12,8 +12,8 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-OBJ: $(SRC)
-	$(CXX)$(CXXFLAGS) -c $(SRC) -o $(OBJ)
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX)$(CXXFLAGS) -c $<SRC> -o $@
 
 clean:
 	rm -rf $(OBJ)
@@ -27,6 +27,6 @@ re: fclean all
 run: all
 	./$(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run
 
 -include $(DEPENDS)

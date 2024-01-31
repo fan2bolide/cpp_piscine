@@ -1,21 +1,25 @@
-NAME =		harlFilter
+NAME	=	harlFilter
 
-SRC =		Harl.cpp main.cpp
+SRC		=	Harl.cpp main.cpp
 
-CXX =		c++
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
 
-OBJ = $(SRC:.cpp=.o)
+OBJ		=	$(SRC:%.cpp=%.o)
+DEPENDS	=	$(SRC:%.cpp=%.d)
 
-.PHONY: all clean fclean re
 
-all : $(OBJ)
-	$(CXX) -Wall -Wextra -Werror $(OBJ) -o $(NAME)
+all : $(NAME)
 
-OBJ: $(SRC)
-	$(CXX) -Wall -Wextra -Werror -c $(SRC) -o $(OBJ)
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -24,3 +28,7 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY: all clean fclean re run
+
+-include $(DEPENDS)
