@@ -5,14 +5,14 @@
 int main(int argc, char **argv)
 {
 	std::string		file_content;
-	std::fstream	infile(argv[1]);
-	std::ofstream	outfile((std::string)argv[1] + ".replace");
 	std::size_t		index;
 
 	if (argc < 4) {
 		std::cerr << "Wrong number of arguments." << std::endl;
 		return (1);
 	}
+	std::fstream	infile(argv[1]);
+	std::ofstream	outfile(((std::string)argv[1] + ".replace").c_str());
 	std::string		s1 = argv[2];
 	std::string		s2 = argv[3];
 	if (s1 == s2)
@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	std::getline(infile, file_content, '\0');
+	infile.close();
 	while (file_content.find(s1, 0) != std::string::npos) {
 		index = file_content.find(s1, 0);
 		file_content.erase(index, s1.length());
@@ -29,5 +30,6 @@ int main(int argc, char **argv)
 	}
 	outfile << file_content;
 	outfile.flush();
+	outfile.close();
 	return (0);
 }

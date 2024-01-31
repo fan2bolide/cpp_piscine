@@ -8,10 +8,10 @@ private:
 	std::string _name;
 
 public:
-	Zombie(void);
-	Zombie(std::string name);
+	Zombie();
+	explicit Zombie(std::string name);
 	~Zombie();
-	void announce(void);
+	void announce();
 };
 
 void randomChump(std::string name);
