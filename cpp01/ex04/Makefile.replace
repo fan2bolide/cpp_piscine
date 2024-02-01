@@ -8,9 +8,7 @@ CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
 OBJ		=	$(SRC:.cpp=.o)
 DEPENDS	=	$(SRC:.cpp=.d)
 
-all : $(NAME)
-
-$(NAME) : $(OBJ)
+all : $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp

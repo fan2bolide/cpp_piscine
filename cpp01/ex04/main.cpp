@@ -9,17 +9,19 @@ int main(int argc, char **argv)
 
 	if (argc < 4) {
 		std::cerr << "Wrong number of arguments." << std::endl;
-		return (1);
+		return 1;
 	}
 	std::fstream	infile(argv[1]);
 	std::ofstream	outfile(((std::string)argv[1] + ".replace").c_str());
 	std::string		s1 = argv[2];
 	std::string		s2 = argv[3];
-	if (s1 == s2)
-		return (0);
+	if (s1.empty()) {
+		std::cerr << "the string to replace is empty, unable to accomplish task" << std::endl;
+		return 1;
+	}
 	if (!infile.is_open()) {
 		std::cerr << "Error opening the infile." << std::endl;
-		return (1);
+		return 1;
 	}
 	std::getline(infile, file_content, '\0');
 	infile.close();
@@ -33,5 +35,5 @@ int main(int argc, char **argv)
 	outfile << file_content;
 	outfile.flush();
 	outfile.close();
-	return (0);
+	return 0;
 }
