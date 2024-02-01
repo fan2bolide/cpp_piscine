@@ -6,7 +6,7 @@ SRC		=	Zombie.cpp\
 			main.cpp
 
 CXX		=	c++
-CXXFLAGS=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
 OBJS_D	=	./
 SRCS_D	=	./
 DEPENDS	=	$(SRC:%.cpp=%.d)
