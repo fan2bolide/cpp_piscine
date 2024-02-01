@@ -7,7 +7,15 @@ HumanB::HumanB(std::string name)
 
 void HumanB::attack()
 {
-	std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+	std::string weaponName;
+
+	if (!this->_weapon) {
+		weaponName = "fists";
+	}
+	else {
+		weaponName = _weapon->getType();
+	}
+	std::cout << _name << " attacks with their " << weaponName << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon &weapon)
