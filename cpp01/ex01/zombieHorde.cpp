@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+#include <sstream>
 
 Zombie	*zombieHorde( int N, std::string name )
 {
@@ -7,7 +8,10 @@ Zombie	*zombieHorde( int N, std::string name )
 
 	i = 0;
 	zombies = new Zombie[N];
-	while (i < N)
-		zombies[i++].setName(name);
+	while (i < N) {
+		std::stringstream ss;
+		ss << name << i + 1;
+		zombies[i++].setName(ss.str());
+	}
 	return zombies;
 }
