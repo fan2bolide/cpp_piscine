@@ -13,7 +13,7 @@ $(NAME) : $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
-	$(CXX)$(CXXFLAGS) -c $<SRC> -o $@
+	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)

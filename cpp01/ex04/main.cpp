@@ -23,10 +23,12 @@ int main(int argc, char **argv)
 	}
 	std::getline(infile, file_content, '\0');
 	infile.close();
-	while (file_content.find(s1, 0) != std::string::npos) {
-		index = file_content.find(s1, 0);
+	index = 0;
+	while (file_content.find(s1, index) != std::string::npos) {
+		index = file_content.find(s1, index);
 		file_content.erase(index, s1.length());
 		file_content.insert(index, s2);
+		index += s2.length();
 	}
 	outfile << file_content;
 	outfile.flush();

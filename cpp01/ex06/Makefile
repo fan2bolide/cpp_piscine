@@ -3,7 +3,7 @@ NAME	=	harlFilter
 SRC		=	Harl.cpp main.cpp
 
 CXX		=	c++
-CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+CXXFLAGS=	-Wall -Wextra -Werror -Wno-implicit-fallthrough -std=c++98 -MD
 
 OBJ		=	$(SRC:%.cpp=%.o)
 DEPENDS	=	$(SRC:%.cpp=%.d)
