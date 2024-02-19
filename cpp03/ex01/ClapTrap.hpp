@@ -14,7 +14,7 @@ public:
 	ClapTrap(ClapTrap const &from);
 	ClapTrap(const std::string &name);
 
-	std::string getName();
+	std::string getName() const;
 	void		setName(const std::string& name);
 	void		setHitPoints(unsigned int hitPoints);
 	void		setEnergyPoints(unsigned int energyPoints);

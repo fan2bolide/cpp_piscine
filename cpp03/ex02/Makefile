@@ -1,7 +1,7 @@
 NAME =		ClapTrap
 
 SRC =		ClapTrap.cpp\
-			ScarvTrap.cpp\
+			ScavTrap.cpp\
 			FragTrap.cpp\
 			main.cpp
 

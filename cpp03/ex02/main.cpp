@@ -1,11 +1,11 @@
 #include "ClapTrap.hpp"
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
 int main()
 {
 	ClapTrap bob("bob");
-	ScarvTrap bobby("bobby");
+	ScavTrap bobby("bobby");
 	FragTrap bipbop("bipbop");
 
 	bobby.attack("bob");

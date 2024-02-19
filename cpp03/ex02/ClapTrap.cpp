@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(ClapTrap const& from) {
 	_attackDamage = from._attackDamage;
 }
 
-std::string ClapTrap::getName() {
+std::string ClapTrap::getName() const{
 	return (_name);
 }
 
@@ -37,14 +37,14 @@ void ClapTrap::attack(const std::string &target) {
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
+	if (_hitPoints != 0)
+		std::cout << "ClapTrap " << _name << " is taking " << amount << " damage!" << std::endl;
 	if (_hitPoints <= amount) {
 		std::cout << "ClapTrap " << _name << " is dead." << std::endl;
 		_hitPoints = 0;
 	}
-	else {
-		std::cout << "ClapTrap " << _name << " is taking " << amount << " damage!" << std::endl;
+	else
 		_hitPoints -= amount;
-	}
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
