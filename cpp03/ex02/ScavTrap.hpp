@@ -3,13 +3,11 @@
 
 #include "ClapTrap.hpp"
 
-class ScarvTrap : public ClapTrap {
+class ScavTrap : public ClapTrap {
 private:
 public:
-	ScarvTrap();
-	ScarvTrap(const std::string &name);
-	ScarvTrap(const ScarvTrap &from);
-	~ScarvTrap();
+	ScavTrap();
+	ScavTrap(const std::string &name);
 
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);

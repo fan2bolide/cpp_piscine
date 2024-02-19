@@ -3,7 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap {
+class FragTrap : public ClapTrap {
 private:
 public:
 	FragTrap();
@@ -13,7 +13,7 @@ public:
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
-	static void	highFivesGuys(void);
+	void	highFivesGuys(void);
 };
 
 #endif
