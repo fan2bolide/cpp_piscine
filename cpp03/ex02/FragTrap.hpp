@@ -8,6 +8,7 @@ private:
 public:
 	FragTrap();
 	FragTrap(const std::string &name);
+	FragTrap(const FragTrap &name);
 	~FragTrap();
 
 	void	attack(const std::string& target);

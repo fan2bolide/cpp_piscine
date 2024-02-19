@@ -9,6 +9,7 @@ public:
 	ScavTrap();
 	ScavTrap(const std::string &name);
 	ScavTrap(const ScavTrap &from);
+	~ScavTrap();
 
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);

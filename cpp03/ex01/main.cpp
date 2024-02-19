@@ -7,9 +7,8 @@ int main()
 	ScavTrap bobby("bobby");
 
 	bobby.attack("bob");
-	bob.takeDamage(bobby.getAttackDamage());
+	bob.takeDamage(5);
 	bob.attack("bobby");
-	if (bob.getHitPoints() > 0)
-		bobby.takeDamage(bob.getAttackDamage());
+	bobby.takeDamage(100);
 
 }
