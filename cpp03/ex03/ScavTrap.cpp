@@ -19,6 +19,19 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name){
 	this->setAttackDamage(20);
 }
 
+ScavTrap::~ScavTrap() {}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &other) {
+		this->_name = other._name;
+		this->_hitPoints = other._hitPoints;
+		this->_energyPoints = other._energyPoints;
+		this->_attackDamage = other._attackDamage;
+	}
+	return (*this);
+}
+
 void ScavTrap::attack(const std::string &target) {
 	if (this->getHitPoints() > 0 && getEnergyPoints() > 0) {
 		std::cout << "ScavTrap " << this->getName() << " attacks " << target << ", causing "<< getAttackDamage() <<" points of damage!" << std::endl;
