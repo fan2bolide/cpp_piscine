@@ -1,12 +1,20 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("Cat"){
+Cat::Cat() : Animal("Cat") {
+	std::cout << "Default cat constructor called" << std::endl;
 }
 
-Cat::Cat(const std::string &name) : Animal("Cat", name){
+Cat::~Cat() {}
 
+Cat &Cat::operator=(const Cat& other) {
+	if (this != &other) {
+		this->type = other.type;
+	}
+	return *this;
 }
 
+// makeSound function definition
 void Cat::makeSound() {
-	std::cout << "Meow !" << std::endl;
+	std::cout << "Meow\n";
 }
+

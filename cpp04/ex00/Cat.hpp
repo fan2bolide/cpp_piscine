@@ -5,9 +5,13 @@
 
 class Cat : public Animal {
 private:
+	std::string name;
 public:
 	Cat();
-	explicit Cat(const std::string &name);
+	explicit Cat(const std::string &type);
+	~Cat();
+	Cat &operator=(const Cat& other);
+
 	void makeSound();
 };
 

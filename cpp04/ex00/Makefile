@@ -1,8 +1,8 @@
 NAME = ex00
 
-CPP = c++
+CXX = c++
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRC = ./Animal.cpp ./Dog.cpp ./Cat.cpp ./main.cpp
 HDR = ./Animal.hpp ./Dog.hpp ./Cat.hpp

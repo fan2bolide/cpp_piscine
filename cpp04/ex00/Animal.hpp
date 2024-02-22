@@ -4,17 +4,16 @@
 
 class Animal
 {
-private:
+protected:
 	std::string	type;
-	std::string _name;
 public:
 	Animal();
 	explicit Animal(const std::string& type);
-	Animal(const std::string& type, const std::string& name);
+	Animal(const Animal &other);
+	~Animal();
+	Animal& operator=(const Animal& other);
 
 	const std::string &getType() const;
-
 	void announce();
-	~Animal();
 };
 #endif

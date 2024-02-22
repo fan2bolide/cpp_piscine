@@ -7,7 +7,10 @@ class Dog : public Animal {
 private:
 public:
 	Dog();
-	explicit Dog(const std::string &name);
+	Dog(const Dog& other);
+	~Dog();
+	Dog &operator=(const Dog &other);
+
 	void makeSound();
 };
 

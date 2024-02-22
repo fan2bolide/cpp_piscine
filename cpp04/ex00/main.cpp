@@ -3,10 +3,8 @@
 
 int main()
 {
-	Cat cat("bobby");
-	Dog dog("bob");
-	cat.announce();
-	dog.announce();
+	Cat cat;
+	Dog dog;
 	cat.makeSound();
 	dog.makeSound();
 	return (0);
