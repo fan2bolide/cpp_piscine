@@ -19,6 +19,10 @@ Animal& Animal::operator=(const Animal& other) {
 	return *this;
 }
 
+const std::string& Animal::getType() const {
+	return type;
+}
+
 Animal::~Animal() {
 	std::string localType = type.empty() ? "Animal" : type ;
 	std::cout << "Animal destructor called for " << localType << std::endl;
