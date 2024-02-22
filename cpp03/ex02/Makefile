@@ -1,23 +1,28 @@
 NAME =		ClapTrap
 
 SRC =		ClapTrap.cpp\
-			ScarvTrap.cpp\
+			ScavTrap.cpp\
 			FragTrap.cpp\
 			main.cpp
 
-OBJ = $(SRC:.cpp=.o)
-DEPENDS = $(SRC:.cpp=.d)
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+OBJS_D	=	./
+SRCS_D	=	./
+DEPENDS	=	$(SRC:%.cpp=%.d)
+OBJ		=	$(SRC:%.cpp=%.o)
 
-.PHONY: all clean fclean re
+all : $(NAME)
 
-all : $(OBJ) $(SRC)
-	c++ -std=c++98 -Wall -Wextra -Werror -MD $(OBJ) -o $(NAME)
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-OBJ: $(SRC)
-	c++ -std=c++98 -Wall -Wextra -Werror -MD -c $(SRC) -o $(OBJ)
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ) $(DEPENDS)
+	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -26,5 +31,7 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY: all clean fclean re
 
 -include $(DEPENDS)

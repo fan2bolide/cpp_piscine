@@ -2,6 +2,8 @@
 # define HARL_HPP
 # include "iostream"
 
+typedef void (*fptr)();
+
 class Harl
 {
 private:

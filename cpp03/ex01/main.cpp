@@ -1,13 +1,14 @@
 #include "ClapTrap.hpp"
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
 	ClapTrap bob("bob");
-	ScarvTrap bobby("bobby");
+	ScavTrap bobby("bobby");
 
 	bobby.attack("bob");
-	bob.takeDamage(bobby.getAttackDamage());
+	bob.takeDamage(5);
 	bob.attack("bobby");
-	bobby.takeDamage(bob.getAttackDamage());
+	bobby.takeDamage(100);
+
 }

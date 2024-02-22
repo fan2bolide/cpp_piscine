@@ -39,7 +39,6 @@ void Harl::complain(std::string level)
 		if (level == levels[i])
 			break;
 	}
-#pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
 	switch (i) {
 		case 0:
 			debug();
@@ -54,5 +53,4 @@ void Harl::complain(std::string level)
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break;
 	}
-#pragma GCC diagnostic pop
 }

@@ -5,15 +5,20 @@
 
 class FragTrap : virtual public ClapTrap {
 private:
+	static std::string	_fragName;
+	static unsigned int	_fragEnergyPoints;
+	static unsigned int	_fragHitPoints;
+	static unsigned int	_fragAttackDamage;
 public:
 	FragTrap();
 	FragTrap(const std::string &name);
 	~FragTrap();
 
+	unsigned int	getAttackDamage() const;
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
-	static void	highFivesGuys(void);
+	void	highFivesGuys(void);
 };
 
 #endif

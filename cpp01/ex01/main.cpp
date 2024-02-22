@@ -10,6 +10,6 @@ int main()
 	int i = 0;
 	while (i < N)
 		zombies[i++].announce();
-	delete zombies;
+	delete [] zombies;
 	return (0);
 }

@@ -4,19 +4,24 @@ SRC =		Zombie.cpp\
 			main.cpp\
 			zombieHorde.cpp\
 
-OBJ = $(SRC:.cpp=.o)
-.PHONY: all clean fclean re
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98
+SRCS_D	=	./
+OBJS_D	=	./
+DEPENDS =	$(SRC:%.cpp=%.d)
+OBJ		=	$(SRC:%.cpp=%.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-OBJ: $(SRC)
-	c++ -Wall -Wextra -Werror -c $(SRC) -o $(OBJ)
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -27,3 +32,5 @@ run: all
 	./$(NAME)
 
 .PHONY : all re fclean clean run
+
+-include $(DEPENDS)

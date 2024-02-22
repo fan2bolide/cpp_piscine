@@ -2,17 +2,17 @@
 # define CLAPTRAP_HPP
 # include <iostream>
 
-class ClapTrap {
-private:
+class ClapTrap
+{
+protected:
 	std::string		_name;
 	unsigned int	_hitPoints;
 	unsigned int	_energyPoints;
 	unsigned int 	_attackDamage;
 public:
 	ClapTrap();
-	ClapTrap(const ClapTrap &from);
+	ClapTrap(ClapTrap const &from);
 	ClapTrap(const std::string &name);
-	~ClapTrap();
 
 	std::string getName() const;
 	void		setName(const std::string& name);
@@ -22,9 +22,10 @@ public:
 	unsigned int	getHitPoints() const;
 	unsigned int	getEnergyPoints() const;
 	unsigned int	getAttackDamage() const;
+
 	virtual void	attack(const std::string& target);
-	virtual void	takeDamage(unsigned int amount);
-	virtual void	beRepaired(unsigned int amount);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
 };
 
 #endif

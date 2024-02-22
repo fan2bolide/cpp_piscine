@@ -1,18 +1,26 @@
-NAME =		ex03.exe
+NAME	=	ex03.exe
 
-SRC =		main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+SRC		=	main.cpp\
+			HumanA.cpp\
+			HumanB.cpp\
+			Weapon.cpp
 
-OBJ = $(SRC:.cpp=.o)
-.PHONY: all clean fclean re
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+OBJ		=	$(SRC:.cpp=.o)
+DEPENDS	=	$(SRC:.cpp=.d)
 
-all : $(OBJ)
-	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
+all : $(NAME)
 
-OBJ: $(SRC)
-	c++ -Wall -Wextra -Werror -c $(SRC) -o $(OBJ)
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -21,3 +29,7 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY: all clean fclean re run
+
+-include $(DEPENDS)

@@ -1,18 +1,25 @@
-NAME =		harlFilter
+NAME	=	harlFilter
 
-SRC =		harl.cpp main.cpp
+SRC		=	Harl.cpp main.cpp
 
-OBJ = $(SRC:.cpp=.o)
-.PHONY: all clean fclean re
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -Wno-implicit-fallthrough -std=c++98 -MD
 
-all : $(OBJ)
-	c++ -Wall -Wextra -Werror $(OBJ) -o $(NAME)
+OBJ		=	$(SRC:%.cpp=%.o)
+DEPENDS	=	$(SRC:%.cpp=%.d)
 
-OBJ: $(SRC)
-	c++ -Wall -Wextra -Werror -c $(SRC) -o $(OBJ)
+
+all : $(NAME)
+
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
@@ -21,3 +28,7 @@ re: fclean all
 
 run: all
 	./$(NAME)
+
+.PHONY: all clean fclean re run
+
+-include $(DEPENDS)
