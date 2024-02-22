@@ -27,7 +27,3 @@ Animal::~Animal() {
 	std::string localType = type.empty() ? "Animal" : type ;
 	std::cout << "Animal destructor called for " << localType << std::endl;
 }
-
-void Animal::announce() {
-	std::cout << "I'm a " << this->type << std::endl;
-}

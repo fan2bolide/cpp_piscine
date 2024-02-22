@@ -3,6 +3,8 @@ NAME = ex00
 SRC		=	Animal.cpp\
 			Dog.cpp\
 			Cat.cpp\
+			WrongAnimal.cpp\
+			WrongCat.cpp\
 			main.cpp
 
 CXX		=	c++

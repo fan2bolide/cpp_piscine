@@ -2,8 +2,7 @@
 # define ANIMAL_HPP
 #include <iostream>
 
-class Animal
-{
+class Animal {
 protected:
 	std::string	type;
 public:
@@ -14,6 +13,7 @@ public:
 	Animal& operator=(const Animal& other);
 
 	const std::string &getType() const;
-	void announce();
+	virtual void makeSound() = 0;
 };
+
 #endif

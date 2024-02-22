@@ -8,7 +8,7 @@ private:
 	std::string name;
 public:
 	Cat();
-	explicit Cat(const std::string &type);
+	Cat(const Cat &other);
 	~Cat();
 	Cat &operator=(const Cat& other);
 
