@@ -1,28 +1,40 @@
 NAME = ex01
 
-CPP = c++
+SRC		=	Animal.cpp\
+			Dog.cpp\
+			Cat.cpp\
+			WrongAnimal.cpp\
+			WrongCat.cpp\
+			Brain.cpp\
+			main.cpp
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+OBJS_D	=	./
+SRCS_D	=	./
+DEPENDS	=	$(SRC:%.cpp=%.d)
+OBJ		=	$(SRC:%.cpp=%.o)
 
-SRC = ./Animal.cpp ./Dog.cpp ./Cat.cpp ./Brain.cpp ./main.cpp
-HDR = ./Animal.hpp ./Dog.hpp ./Cat.hpp ./Brain.hpp
+all : $(NAME)
 
-OBJ = $(SRC:.cpp=.o)
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-all: $(NAME)
-
-$(NAME): $(SRC) $(OBJ) $(HDR)
-	$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
-
-%.o: %.cpp
-	$(CPP) $(FLAGS) -c $< -o $@
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all clean re
+re: fclean all
 
-.PHONY : all clean
+run: all
+	./$(NAME)
+
+.PHONY: all clean fclean re
+
+-include $(DEPENDS)

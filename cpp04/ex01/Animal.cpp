@@ -19,11 +19,11 @@ Animal& Animal::operator=(const Animal& other) {
 	return *this;
 }
 
-Animal::~Animal() {
-	std::string localType = type.empty() ? "Animal" : type ;
-	std::cout << "Animal destructor called for " << localType << std::endl;
+const std::string& Animal::getType() const {
+	return type;
 }
 
-void Animal::announce() {
-	std::cout << "I'm a " << this->type << std::endl;
+Animal::~Animal() {
+	const std::string localType = type.empty() ? "Animal" : type ;
+	std::cout << "Animal destructor called for " << localType << std::endl;
 }

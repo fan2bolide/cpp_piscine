@@ -2,18 +2,18 @@
 # define ANIMAL_HPP
 #include <iostream>
 
-class Animal
-{
+class Animal {
 protected:
 	std::string	type;
 public:
 	Animal();
 	explicit Animal(const std::string& type);
 	Animal(const Animal &other);
-	~Animal();
+	virtual ~Animal();
 	Animal& operator=(const Animal& other);
 
 	const std::string &getType() const;
-	void announce();
+	virtual void makeSound() = 0;
 };
+
 #endif
