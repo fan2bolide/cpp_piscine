@@ -3,6 +3,7 @@
 
 int main()
 {
+	Animal animal;
 	Cat cat;
 	Dog dog;
 	cat.makeSound();

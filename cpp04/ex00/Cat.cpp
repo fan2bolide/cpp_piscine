@@ -4,7 +4,9 @@ Cat::Cat() : Animal("Cat") {
 	std::cout << "Default cat constructor called" << std::endl;
 }
 
-Cat::~Cat() {}
+Cat::~Cat() {
+	std::cout << "Cat destructor called" << std::endl;
+}
 
 Cat &Cat::operator=(const Cat& other) {
 	if (this != &other) {
@@ -13,7 +15,6 @@ Cat &Cat::operator=(const Cat& other) {
 	return *this;
 }
 
-// makeSound function definition
 void Cat::makeSound() {
 	std::cout << "Meow\n";
 }

@@ -20,13 +20,10 @@ Animal& Animal::operator=(const Animal& other) {
 }
 
 Animal::~Animal() {
-	std::cout << this->type << " destroyed." << std::endl;
+	std::string localType = type.empty() ? "Animal" : type ;
+	std::cout << "Animal destructor called for " << localType << std::endl;
 }
 
 void Animal::announce() {
 	std::cout << "I'm a " << this->type << std::endl;
-}
-
-const std::string &Animal::getType() const {
-	return type;
 }
