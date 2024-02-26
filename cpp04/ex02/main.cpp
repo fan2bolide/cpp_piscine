@@ -4,7 +4,6 @@
 
 int main()
 {
-	//todo check leaks before final push
 	Animal *animals[10];
 	for (int i = 0 ; i < 5 ; ++i) {
 		animals[i] = new Cat();
