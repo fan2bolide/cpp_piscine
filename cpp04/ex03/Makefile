@@ -1,27 +1,39 @@
 NAME = ex03
 
-CPP = c++
+SRC	= 	Floor.cpp\
+		Character.cpp\
+		Cure.cpp\
+		Ice.cpp\
+		AMateria.cpp\
+		main.cpp
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror -g3 -fsanitize=address
+CXX		=	c++
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+OBJS_D	=	./
+SRCS_D	=	./
+DEPENDS	=	$(SRC:%.cpp=%.d)
+OBJ		=	$(SRC:%.cpp=%.o)
 
-SRC = Floor.cpp Character.cpp Cure.cpp Ice.cpp AMateria.cpp ./main.cpp
-HDR = Floor.hpp Character.hpp Cure.hpp Ice.hpp AMateria.hpp
-OBJ = $(SRC:.cpp=.o)
+all : $(NAME)
 
-all: $(NAME)
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-$(NAME): $(SRC) $(OBJ) $(HDR)
-	$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
-
-%.o: %.cpp
-	$(CPP) $(FLAGS) -c $< -o $@
+$(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY : all clean fclean re
+run: all
+	./$(NAME)
+
+.PHONY: all clean fclean re
+
+-include $(DEPENDS)

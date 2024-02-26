@@ -14,7 +14,7 @@
 #define FLOOR_HPP
 #include "AMateria.hpp"
 
-class AMateria;
+// class AMateria;
 
 class Floor {
 private:
