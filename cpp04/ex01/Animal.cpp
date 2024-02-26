@@ -27,3 +27,6 @@ Animal::~Animal() {
 	const std::string localType = type.empty() ? "Animal" : type ;
 	std::cout << "Animal destructor called for " << localType << std::endl;
 }
+
+void	Animal::makeSound() {
+}

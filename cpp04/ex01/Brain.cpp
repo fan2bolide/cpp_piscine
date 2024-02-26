@@ -24,6 +24,6 @@ Brain& Brain::operator=(const Brain& other) {
 	return *this;
 }
 
-std::string& Brain::operator[](size_t index) {
+std::string& Brain::operator[](size_t const index) {
 	return ideas[index];
 }
