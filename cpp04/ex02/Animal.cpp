@@ -1,34 +1,29 @@
 #include "Animal.hpp"
 
 Animal::Animal() {
+	std::cout << "Animal default constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal &other) : type(other.type), _name(other._name) {
+Animal::Animal(const Animal& other) : type(other.type) {
+	std::cout << "Animal copy constructor called" << std::endl;
 }
 
 Animal::Animal(const std::string& type) : type(type){
+	std::cout << "Animal string constructor called" << std::endl;
 }
 
-Animal::Animal(const std::string& type, const std::string& name) : type(type), _name(name){
-
+Animal& Animal::operator=(const Animal& other) {
+		if (this != &other) {
+			type = other.type;
+		}
+	return *this;
 }
 
-Animal::~Animal() {
-	std::cout << "Animal " << this->type << " " << this->_name << " destroyed." << std::endl;
-}
-
-void Animal::announce() {
-	std::cout << "I'm " << this->_name << " and I'm a " << this->type << std::endl;
-}
-
-const std::string &Animal::getType() const {
+const std::string& Animal::getType() const {
 	return type;
 }
 
-Animal &Animal::operator=(const Animal &other) {
-	if (this == &other)
-		return (*this);
-	this->type = other.type;
-	this->_name = other._name;
-	return (*this);
+Animal::~Animal() {
+	const std::string localType = type.empty() ? "Animal" : type ;
+	std::cout << "Animal destructor called for " << localType << std::endl;
 }

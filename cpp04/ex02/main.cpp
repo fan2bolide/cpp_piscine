@@ -1,25 +1,26 @@
+#include <iostream>
 #include "Dog.hpp"
 #include "Cat.hpp"
 
 int main()
 {
-	int arraySize = 4;
-	Animal *array[arraySize];
-	for (int i = 0 ; i < arraySize ; i++)
-	{
-		if (i < arraySize / 2)
-			array[i] = new Dog("Doggy");
-		else
-			array[i] = new Cat("Kitty");
+	//todo check leaks before final push
+	Animal *animals[10];
+	for (int i = 0 ; i < 5 ; ++i) {
+		animals[i] = new Cat();
 	}
-	for (int i = 0 ; i < arraySize ; i++)
-	{
-		array[i]->announce();
-		array[i]->makeSound();
+	Cat &b = dynamic_cast<Cat &>(*animals[4]);
+	std::cout << std::endl;
+	b[6] = "I don't wanna burn the world";
+	b[7] = "I wanna burn the world";
+	std::cout << b[6] << std::endl<< std::endl << b[7] << std::endl << std::endl;
+	std::cout << std::endl;
+	for (int i = 5 ; i < 10 ; ++i) {
+		animals[i] = new Dog();
 	}
-	for (int i = 0 ; i < arraySize ; i++)
-	{
-		delete array[i];
+	std::cout << std::endl;
+	for (int i = 0 ; i < 10 ; ++i) {
+		delete animals[i];
 	}
 	return (0);
 }
