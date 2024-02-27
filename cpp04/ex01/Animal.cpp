@@ -28,5 +28,5 @@ Animal::~Animal() {
 	std::cout << "Animal destructor called for " << localType << std::endl;
 }
 
-void	Animal::makeSound() {
+void	Animal::makeSound() const {
 }

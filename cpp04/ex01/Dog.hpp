@@ -12,8 +12,9 @@ public:
 	Dog(const Dog& other);
 	~Dog();
 	Dog &operator=(const Dog &other);
+	std::string &operator[](size_t index);
 
-	void makeSound();
+	void makeSound() const ;
 };
 
 #endif

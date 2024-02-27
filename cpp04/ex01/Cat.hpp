@@ -14,7 +14,7 @@ public:
 	Cat &operator=(const Cat& other);
 	std::string &operator[](size_t index);
 
-	void makeSound();
+	void makeSound() const ;
 };
 
 #endif

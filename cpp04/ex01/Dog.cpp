@@ -17,11 +17,17 @@ Dog::~Dog() {
 
 Dog& Dog::operator=(const Dog& other) {
 	std::cout << "Dog copy assignment operator called" << std::endl;
-	if (this != &other)
+	if (this != &other) {
+		*this->_brain = *other._brain;
 		this->type = other.type;
+	}
 	return *this;
 }
 
-void Dog::makeSound() {
+std::string& Dog::operator[](size_t index) {
+	return (*_brain)[index];
+}
+
+void Dog::makeSound() const {
 	std::cout << "Woof !" << std::endl;
 }

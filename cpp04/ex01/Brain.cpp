@@ -3,6 +3,7 @@
 #include <iostream>
 
 Brain::Brain() {
+	std::cout << "Brain default construcor called" << std::endl;
 }
 
 Brain::Brain(const Brain &other) {
