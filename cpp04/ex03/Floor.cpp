@@ -31,8 +31,7 @@ void Floor::addMateria(AMateria *materia) {
 Floor::~Floor() {
 	std::cout << "destroying a materia on the floor" << std::endl;
 	delete _materia;
-	if (_next)
-		delete _next;
+	delete _next;
 }
 
 Floor::Floor(const Floor &other) {
