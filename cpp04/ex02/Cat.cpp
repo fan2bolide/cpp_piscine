@@ -17,6 +17,7 @@ Cat::~Cat() {
 
 Cat &Cat::operator=(const Cat& other) {
 	if (this != &other) {
+		*this->_brain = *other._brain;
 		this->type = other.type;
 	}
 	return *this;
@@ -26,6 +27,6 @@ std::string& Cat::operator[](size_t index) {
 	return (*_brain)[index];
 }
 
-void Cat::makeSound() {
+void Cat::makeSound() const{
 	std::cout << "Meow\n";
 }
