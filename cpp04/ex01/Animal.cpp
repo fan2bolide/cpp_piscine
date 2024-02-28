@@ -29,4 +29,5 @@ Animal::~Animal() {
 }
 
 void	Animal::makeSound() const {
+	std::cout << "* No sound *" << std::endl;
 }
