@@ -2,6 +2,9 @@ NAME = ex01
 
 SRC		=	Bureaucrat.cpp\
 			Form.cpp\
+			PresidentialPardonForm.cpp\
+			ShrubberyCreationForm.cpp\
+			RobotomyRequestForn.cpp\
 			main.cpp
 
 CXX		=	c++
