@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 private:
@@ -16,16 +19,13 @@ public:
 	explicit Bureaucrat(const std::string &name);
 	class GradeTooHighException : public std::exception {
 	public:
-		const char* what() const throw() {
-			return ("exception : grade is too high");
-		}
+		const char* what() const throw();
 	};
 	class GradeTooLowException : public std::exception {
 	public:
-		const char* what() const throw (){
-			return ("exception : grade is too low");
-		}
+		const char* what() const throw ();
 	};
+	void signForm(Form& form) const;
 	const int &getGrade() const ;
 	const std::string &getName() const ;
 };
