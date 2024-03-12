@@ -8,11 +8,11 @@ const char* Form::GradeTooHighException::what() const throw() {
 	return ("exception : grade is too high");
 }
 
-Form::Form() :_signed(false), _gradeToSign(150), _gradeToExecute(150) {
+Form::Form() : _signed(false), _gradeToSign(150), _gradeToExecute(150) {
 	std::cout << "Default Form constructor called" << std::endl;
 }
 
-Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+Form::Form(const std::string& name, const int& gradeToSign, const int& gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	std::cout << "Int Form constructor called" << std::endl;
 	if (gradeToExecute < 1 || gradeToSign < 1) {
 		throw GradeTooHighException();
@@ -39,10 +39,16 @@ int Form::getGradeToExecute() const {
 }
 
 void Form::beSigned(const Bureaucrat &signer) {
-	if (signer.getGrade() <= _gradeToSign) {
+	if (signer.getGrade() <= _gradeToSign && !_signed) {
 		std::cout << "Bureaucrat " << signer.getName() << " signed the form " << _name << std::endl;
+		_signed = true;
 	}
 	else {
-		std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because his grade is too low" << std::endl;
+		if (_signed) {
+			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because the form is already signed" << std::endl;
+		}
+		else {
+			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because his grade is too low" << std::endl;
+		}
 	}
 }

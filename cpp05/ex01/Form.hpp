@@ -15,8 +15,7 @@ private:
 	const int			_gradeToExecute;
 public:
 	Form();
-	Form(std::string name, int gradeToSign, int gradeToExecute);
-
+	Form(const std::string& name, const int& gradeToSign, const int& gradeToExecute);
 	class GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw();
