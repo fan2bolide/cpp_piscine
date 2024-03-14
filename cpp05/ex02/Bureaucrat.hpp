@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:44:12 by bajeanno          #+#    #+#             */
-/*   Updated: 2024/03/13 16:44:13 by bajeanno         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:05:00 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 private:
@@ -37,8 +37,8 @@ public:
 	public:
 		const char* what() const throw ();
 	};
-	void signForm(Form& form) const;
-	void executeForm(Form& form) const;
+	void signForm(AForm& form) const;
+	void executeForm(AForm& form) const;
 	const int &getGrade() const ;
 	const std::string &getName() const ;
 };

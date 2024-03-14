@@ -6,12 +6,12 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:43:26 by bajeanno          #+#    #+#             */
-/*   Updated: 2024/03/14 12:00:11 by bajeanno         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:00:57 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"

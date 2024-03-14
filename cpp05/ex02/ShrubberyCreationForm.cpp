@@ -6,17 +6,17 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:44:04 by bajeanno          #+#    #+#             */
-/*   Updated: 2024/03/13 16:44:04 by bajeanno         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:44:06 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("ShrubberyCreationForm", 145, 137), target("target_name") {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("target_name") {
 	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : Form("ShrubberyCreationForm", 145, 137), target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), target(target) {
 	std::cout << "ShrubberyCreationForm constructor called" << std::endl;
 }
 
@@ -38,4 +38,16 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
 			   "                     |   =|\n"
 			   "                     |    |\n"
 			   "--------------------/ ,  . \\--------._" << std::endl;
+}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
+	if (this != &other) {
+		AForm::operator=(other);
+		target = other.target;
+	}
+	return (*this);
+}
+
+ShrubberyCreationForm::~ShrubberyCreationForm() {
+	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }

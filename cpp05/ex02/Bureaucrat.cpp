@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:43:52 by bajeanno          #+#    #+#             */
-/*   Updated: 2024/03/13 17:19:14 by bajeanno         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:19:37 by bajeanno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ const std::string &Bureaucrat::getName() const {
 	return _name;
 }
 
-void Bureaucrat::signForm(Form &form) const {
+void Bureaucrat::signForm(AForm &form) const {
 	form.beSigned(*this);
 }
 
-void Bureaucrat::executeForm(Form& form) const {
+void Bureaucrat::executeForm(AForm& form) const {
 	try {
 		form.execute(*this);
 	}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <string>
 #include <iostream>
@@ -19,16 +19,16 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 private:
 	const std::string	_name;
 	bool				_signed;
 	const int			_gradeToSign;
 	const int			_gradeToExecute;
-	Form();
+	AForm();
 public:
-	Form(const std::string& name, const int& gradeToSign, const int& gradeToExecute);
-	virtual ~Form();
+	AForm(const std::string& name, const int& gradeToSign, const int& gradeToExecute);
+	virtual ~AForm();
 	class GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw();
@@ -49,7 +49,7 @@ public:
 	public:
 		const char* what() const throw ();
 	};
-	Form &operator=(const Form& other);
+	AForm &operator=(const AForm& other);
 	virtual void execute(const Bureaucrat& executor) = 0;
 	void beSigned(const Bureaucrat& signer);
 	const std::string &getName() const;
