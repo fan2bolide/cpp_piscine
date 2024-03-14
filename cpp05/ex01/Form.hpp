@@ -16,6 +16,7 @@ private:
 public:
 	Form();
 	Form(const std::string& name, const int& gradeToSign, const int& gradeToExecute);
+	~Form();
 	class GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw();
@@ -24,6 +25,7 @@ public:
 	public:
 		const char* what() const throw ();
 	};
+	Form &operator=(const Form& other);
 	void beSigned(const Bureaucrat& signer);
 	const std::string &getName() const;
 	bool isSigned() const;

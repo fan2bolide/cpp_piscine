@@ -4,6 +4,13 @@ const char* Form::GradeTooLowException::what() const throw() {
 	return ("exception : grade is too low");
 }
 
+Form& Form::operator=(const Form& other) {
+	if (this != &other)
+		_signed = other._signed;
+	//can't copy other attributes as they are all consts.
+	return *this;
+}
+
 const char* Form::GradeTooHighException::what() const throw() {
 	return ("exception : grade is too high");
 }
@@ -44,11 +51,13 @@ void Form::beSigned(const Bureaucrat &signer) {
 		_signed = true;
 	}
 	else {
-		if (_signed) {
+		if (_signed)
 			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because the form is already signed" << std::endl;
-		}
-		else {
+		else
 			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because his grade is too low" << std::endl;
-		}
 	}
+}
+
+Form::~Form() {
+	std::cout << "Form destructor called" << std::endl;
 }
