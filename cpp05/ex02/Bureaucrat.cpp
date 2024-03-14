@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/13 16:43:52 by bajeanno          #+#    #+#             */
+/*   Updated: 2024/03/13 17:19:14 by bajeanno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("bubu") , _grade(150){
@@ -45,6 +57,15 @@ const std::string &Bureaucrat::getName() const {
 
 void Bureaucrat::signForm(Form &form) const {
 	form.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(Form& form) const {
+	try {
+		form.execute(*this);
+	}
+	catch (std::exception &e) {
+		std::cout << e.what();
+	}
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {

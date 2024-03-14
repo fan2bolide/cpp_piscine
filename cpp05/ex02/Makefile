@@ -1,10 +1,10 @@
-NAME = ex01
+NAME = ex02
 
 SRC		=	Bureaucrat.cpp\
 			Form.cpp\
 			PresidentialPardonForm.cpp\
 			ShrubberyCreationForm.cpp\
-			RobotomyRequestForn.cpp\
+			RobotomyRequestForm.cpp\
 			main.cpp
 
 CXX		=	c++
@@ -29,7 +29,8 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE)
 
 run: all
 	./$(NAME)
