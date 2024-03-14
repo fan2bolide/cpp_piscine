@@ -35,12 +35,17 @@ AForm& AForm::operator=(const AForm& other) {
 	return *this;
 }
 
+std::ostream &operator<<(std::ostream& out, const AForm &obj) {
+	out << obj.getName() << " form with sign grade " << obj.getGradeToSign() << " and execute grade " << obj.getGradeToSign();
+	return out;
+}
+
 AForm::AForm() : _signed(false), _gradeToSign(150), _gradeToExecute(150) {
-	std::cout << "Default AForm constructor called" << std::endl;
+//	std::cout << "Default AForm constructor called" << std::endl;
 }
 
 AForm::AForm(const std::string& name, const int& gradeToSign, const int& gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
-	std::cout << "AForm constructor called" << std::endl;
+//	std::cout << "AForm constructor called" << std::endl;
 	if (gradeToExecute < 1 || gradeToSign < 1) {
 		throw GradeTooHighException();
 	}
@@ -76,7 +81,7 @@ void AForm::beSigned(const Bureaucrat &signer) {
 }
 
 AForm::~AForm() {
-	std::cout << "AForm destructor called" << std::endl;
+//	std::cout << "AForm destructor called" << std::endl;
 }
 
 const char *AForm::CantExecuteException::what() const throw() {

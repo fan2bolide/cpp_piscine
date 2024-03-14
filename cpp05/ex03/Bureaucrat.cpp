@@ -13,11 +13,11 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("bubu") , _grade(150){
-	std::cout << "Bureaucrat default constructor called" << std::endl;
+//	std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, const int& grade) : _name(name), _grade(grade){
-	std::cout << "Bureaucrat string constructor called" << std::endl;
+//	std::cout << "Bureaucrat string constructor called" << std::endl;
 	if (grade > 150) {
 		throw GradeTooLowException();
 	}
@@ -27,11 +27,11 @@ Bureaucrat::Bureaucrat(const std::string& name, const int& grade) : _name(name),
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat destructor called" << std::endl;
+//	std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-	std::cout << "Assignment operator called" << std::endl;
+//	std::cout << "Assignment operator called" << std::endl;
 	if (this != &other) {
 		_grade = other._grade;
 	}
@@ -44,7 +44,7 @@ std::ostream &operator<<(std::ostream& out, const Bureaucrat &obj) {
 }
 
 Bureaucrat::Bureaucrat(const std::string& name) : _name(name), _grade(149) {
-	std::cout << "Bureaucrat string constructor called" << std::endl;
+//	std::cout << "Bureaucrat string constructor called" << std::endl;
 }
 
 const int &Bureaucrat::getGrade() const {

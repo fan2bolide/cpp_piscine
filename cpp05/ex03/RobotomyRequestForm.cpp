@@ -14,11 +14,11 @@
 #include "sys/time.h"
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), target("target_name") {
-	std::cout << "Default RobotomyRequestForm constructor called" << std::endl;
+//	std::cout << "Default RobotomyRequestForm constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", 72, 45), target(target) {
-	std::cout << "RobotomyRequestForm constructor called" << std::endl;
+//	std::cout << "RobotomyRequestForm constructor called" << std::endl;
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) {
@@ -45,7 +45,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << "RobotomyRequestForm destructor called" << std::endl;
+//	std::cout << "RobotomyRequestForm destructor called" << std::endl;
 }
 
 

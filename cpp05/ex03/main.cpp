@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main() {
 	ShrubberyCreationForm s("target");
@@ -57,9 +58,34 @@ int main() {
 		{
 			std::cout << e.what();
 		}
-
+		Intern intern;
+		AForm *form = intern.makeForm("shrubbery creation", "bobby");
+		std::cout << "********************************************************************************" << std::endl;
+		std::cout << form->getName();
 		std::cout << std::endl;
-		//todo check les execute
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << "********************************************************************************" << std::endl;
+		{
+			Intern  someRandomIntern;
+			AForm*   rrf;
+			rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+			rrf->beSigned(b);
+			rrf->execute(b);
+		}
+		std::cout << "********************************************************************************" << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

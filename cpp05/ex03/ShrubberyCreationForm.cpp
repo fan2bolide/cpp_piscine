@@ -13,11 +13,11 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("target_name") {
-	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
+//	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), target(target) {
-	std::cout << "ShrubberyCreationForm constructor called" << std::endl;
+//	std::cout << "ShrubberyCreationForm constructor called" << std::endl;
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
@@ -49,5 +49,5 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+//	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }
