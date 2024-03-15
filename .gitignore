@@ -1,4 +1,5 @@
 .idea
 *.o
 *.d
+*_shrubbery
 .DS_Store
