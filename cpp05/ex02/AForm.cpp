@@ -75,6 +75,11 @@ void AForm::beSigned(const Bureaucrat &signer) {
 	}
 }
 
+std::ostream &operator<<(std::ostream& out, const AForm &obj) {
+	out << obj.getName() << " form with sign grade " << obj.getGradeToSign() << " and execute grade " << obj.getGradeToExecute();
+	return out;
+}
+
 AForm::~AForm() {
 	std::cout << "AForm destructor called" << std::endl;
 }

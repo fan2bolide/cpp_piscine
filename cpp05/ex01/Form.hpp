@@ -32,5 +32,6 @@ public:
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 };
+std::ostream &operator<<(std::ostream& out, const Form &obj);
 
 #endif

@@ -76,6 +76,7 @@ int main() {
 			rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
 			rrf->beSigned(b);
 			rrf->execute(b);
+			std::cout << *rrf << std::endl;
 		}
 		std::cout << "********************************************************************************" << std::endl;
 		std::cout << std::endl;

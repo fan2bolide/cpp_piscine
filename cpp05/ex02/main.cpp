@@ -59,7 +59,6 @@ int main() {
 		}
 
 		std::cout << std::endl;
-		//todo faire les classes canoniques
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

@@ -19,6 +19,11 @@ Form::Form() : _signed(false), _gradeToSign(150), _gradeToExecute(150) {
 	std::cout << "Default Form constructor called" << std::endl;
 }
 
+std::ostream &operator<<(std::ostream& out, const Form &obj) {
+	out << obj.getName() << " form with sign grade " << obj.getGradeToSign() << " and execute grade " << obj.getGradeToExecute();
+	return out;
+}
+
 Form::Form(const std::string& name, const int& gradeToSign, const int& gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	std::cout << "Int Form constructor called" << std::endl;
 	if (gradeToExecute < 1 || gradeToSign < 1) {

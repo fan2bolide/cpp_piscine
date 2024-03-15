@@ -31,12 +31,12 @@ const char* AForm::NotSignedException::what() const throw() {
 AForm& AForm::operator=(const AForm& other) {
 	if (this != &other)
 		_signed = other._signed;
-	//can't copy other attributes as they are all consts.
+	//can't copy other attributes as they all are consts.
 	return *this;
 }
 
 std::ostream &operator<<(std::ostream& out, const AForm &obj) {
-	out << obj.getName() << " form with sign grade " << obj.getGradeToSign() << " and execute grade " << obj.getGradeToSign();
+	out << obj.getName() << " form with sign grade " << obj.getGradeToSign() << " and execute grade " << obj.getGradeToExecute();
 	return out;
 }
 

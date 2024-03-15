@@ -26,7 +26,7 @@ public:
 		const char* what() const throw ();
 	};
 	void signForm(Form& form) const;
-	const int &getGrade() const ;
+	const int &getGrade() const;
 	const std::string &getName() const ;
 };
 std::ostream &operator<<(std::ostream& out, const Bureaucrat &obj);
