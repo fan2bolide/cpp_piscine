@@ -43,3 +43,8 @@ const std::string &Bureaucrat::getName() const {
 	return _name;
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	this->_grade = other._grade;
+}
+

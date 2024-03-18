@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 16:43:52 by bajeanno          #+#    #+#             */
-/*   Updated: 2024/03/13 17:19:37 by bajeanno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("bubu") , _grade(150){
@@ -55,24 +43,8 @@ const std::string &Bureaucrat::getName() const {
 	return _name;
 }
 
-void Bureaucrat::signForm(AForm &form) const {
-	form.beSigned(*this);
+Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	this->_grade = other._grade;
 }
 
-void Bureaucrat::executeForm(AForm& form) const {
-	try {
-		form.execute(*this);
-		std::cout << "Bureaucrat " << _name << " executed " << form.getName() << std::endl;
-	}
-	catch (std::exception &e) {
-		std::cout << e.what();
-	}
-}
-
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("exception : grade is too low");
-}
-
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return ("exception : grade is too high");
-}

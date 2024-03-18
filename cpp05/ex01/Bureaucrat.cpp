@@ -43,14 +43,8 @@ const std::string &Bureaucrat::getName() const {
 	return _name;
 }
 
-void Bureaucrat::signForm(Form &form) const {
-	form.beSigned(*this);
+Bureaucrat::Bureaucrat(const Bureaucrat &other) {
+	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	this->_grade = other._grade;
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return ("exception : grade is too low");
-}
-
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return ("exception : grade is too high");
-}
