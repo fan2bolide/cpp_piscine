@@ -1,6 +1,6 @@
 NAME = ex00
 
-SRC		=	Bureaucrat.cpp\
+SRC		=	ScalarConverter.cpp\
 			main.cpp
 
 CXX		=	c++
