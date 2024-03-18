@@ -1,6 +1,6 @@
 NAME = ex01
 
-SRC		=	Serialization.cpp\
+SRC		=	Serializer.cpp\
 			Data.cpp\
 			main.cpp
 
