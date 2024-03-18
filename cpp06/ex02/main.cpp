@@ -6,9 +6,9 @@
 #include <cstdlib>
 #include <iostream>
 
-Base *generate(void) {
+Base *generate() {
 	timeval tv;
-	gettimeofday(&tv, NULL);
+	gettimeofday(&tv, nullptr);
 	srand(tv.tv_usec);
 	switch (rand() % 3) {
 		case 0:
@@ -18,7 +18,7 @@ Base *generate(void) {
 		case 2:
 			return new C();
 	}
-	return NULL;
+	return nullptr;
 }
 
 void identify(Base *p) {

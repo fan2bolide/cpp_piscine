@@ -5,7 +5,9 @@
 
 class B : public Base {
 public:
+	B();
 	~B();
+	B &operator=(const B &other);
 };
 
 #endif
