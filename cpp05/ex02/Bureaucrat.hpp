@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat {
 private:
@@ -28,6 +31,7 @@ public:
 		}
 	};
 	const int &getGrade() const ;
+	void signForm(AForm& form);
 	const std::string &getName() const ;
 };
 std::ostream &operator<<(std::ostream& out, const Bureaucrat &obj);

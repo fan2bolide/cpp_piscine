@@ -59,7 +59,10 @@ void Form::beSigned(const Bureaucrat &signer) {
 		if (_signed)
 			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because the form is already signed" << std::endl;
 		else
+		{
 			std::cout << "Bureaucrat " << signer.getName() << " couldn't sign form " << _name << " because his grade is too low" << std::endl;
+			throw GradeTooLowException();
+		}
 	}
 }
 

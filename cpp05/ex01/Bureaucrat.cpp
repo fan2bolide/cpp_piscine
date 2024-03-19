@@ -48,3 +48,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 	this->_grade = other._grade;
 }
 
+void Bureaucrat::signForm(Form &form) {
+	form.beSigned(*this);
+}
+
