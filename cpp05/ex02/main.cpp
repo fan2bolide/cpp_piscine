@@ -20,48 +20,40 @@ int main() {
 	ShrubberyCreationForm s("target");
 	RobotomyRequestForm r("target");
 	PresidentialPardonForm p("target");
-	PresidentialPardonForm fds("target");
-
+	Bureaucrat a("a", 150);
+	Bureaucrat b("b", 1);
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << std::endl;
 	try {
-		Bureaucrat a("a", 150);
-		Bureaucrat b("b", 1);
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		std::cout << std::endl;
-		try {
-			b.signForm(s);
-			s.execute(b);
-			b.executeForm(s);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what();
-		}
-		std::cout << std::endl;
-		try {
-			b.signForm(r);
-			r.execute(b);
-			b.executeForm(r);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what();
-		}
-		std::cout << std::endl;
-		try {
-			b.signForm(p);
-			p.execute(b);
-			b.executeForm(p);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what();
-		}
-
-		std::cout << std::endl;
+		b.signForm(s);
+		s.execute(b);
+		b.executeForm(s);
 	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
 	}
+	std::cout << std::endl;
+	try {
+		b.signForm(r);
+		r.execute(b);
+		b.executeForm(r);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	std::cout << std::endl;
+	try {
+		p.beSigned(b);
+		p.execute(b);
+		b.executeForm(p);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	std::cout << std::endl;
 	return (0);
 }
