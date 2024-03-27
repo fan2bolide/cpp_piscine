@@ -28,7 +28,12 @@ int main() {
 		Bureaucrat b("b", 1);
 		std::cout << a << std::endl;
 		std::cout << b << std::endl;
-
+		try {
+			b.upGrade();
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
 		std::cout << std::endl;
 		try {
 			b.signForm(s);
@@ -65,10 +70,6 @@ int main() {
 		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
 		std::cout << "********************************************************************************" << std::endl;
 		{
 			Intern  someRandomIntern;
@@ -77,16 +78,13 @@ int main() {
 			rrf->beSigned(b);
 			rrf->execute(b);
 			std::cout << *rrf << std::endl;
+			delete rrf;
 		}
 		std::cout << "********************************************************************************" << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
+		delete form;
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

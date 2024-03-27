@@ -39,6 +39,10 @@ AForm::AForm() : _signed(false), _gradeToSign(150), _gradeToExecute(150) {
 	std::cout << "Default AForm constructor called" << std::endl;
 }
 
+AForm::AForm(const AForm &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {
+	*this = other;
+}
+
 AForm::AForm(const std::string& name, const int& gradeToSign, const int& gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 	std::cout << "AForm constructor called" << std::endl;
 	if (gradeToExecute < 1 || gradeToSign < 1) {

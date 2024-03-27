@@ -18,6 +18,8 @@ public:
 	Bureaucrat &operator=(const Bureaucrat &other);
 	explicit Bureaucrat(const std::string &name);
 	explicit Bureaucrat(const Bureaucrat &other);
+	void upGrade();
+	void downGrade();
 	class GradeTooHighException : public std::exception {
 	public:
 		const char* what() const throw() {
@@ -31,7 +33,7 @@ public:
 		}
 	};
 	const int &getGrade() const ;
-	void signForm(Form& form);
+	void signForm(Form& form) const;
 	const std::string &getName() const ;
 };
 std::ostream &operator<<(std::ostream& out, const Bureaucrat &obj);

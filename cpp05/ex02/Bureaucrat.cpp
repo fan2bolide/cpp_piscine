@@ -39,6 +39,20 @@ const int &Bureaucrat::getGrade() const {
 	return _grade;
 }
 
+void Bureaucrat::upGrade() {
+	if (this->_grade == 150)
+		throw GradeTooLowException();
+	else
+		this->_grade--;
+}
+
+void Bureaucrat::downGrade() {
+	if (this->_grade == 1)
+		throw GradeTooHighException();
+	else
+		this->_grade++;
+}
+
 const std::string &Bureaucrat::getName() const {
 	return _name;
 }
@@ -48,7 +62,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 	this->_grade = other._grade;
 }
 
-void Bureaucrat::signForm(AForm& form) {
+void Bureaucrat::signForm(AForm &form) const {
 	form.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(AForm &form) const {
+	form.execute(*this);
 }
 

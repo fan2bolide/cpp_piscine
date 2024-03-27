@@ -28,6 +28,7 @@ private:
 	AForm();
 public:
 	AForm(const std::string& name, const int& gradeToSign, const int& gradeToExecute);
+	AForm(const AForm &other);
 	virtual ~AForm();
 	class GradeTooHighException : public std::exception {
 	public:

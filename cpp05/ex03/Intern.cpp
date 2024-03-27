@@ -13,6 +13,10 @@ Intern &Intern::operator=(const Intern &other) {
 	return *this;
 }
 
+Intern::Intern(const Intern &other) {
+	*this = other;
+}
+
 AForm *Intern::makeForm(const std::string &formName, const std::string &formTarget) {
 	AForm *finalForm;
 	std::string formNames[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
