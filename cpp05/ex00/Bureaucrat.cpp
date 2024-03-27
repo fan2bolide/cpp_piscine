@@ -49,16 +49,15 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) {
 }
 
 void Bureaucrat::upGrade() {
-	if (this->_grade == 150)
-		throw GradeTooLowException();
+	if (this->_grade == 1)
+		throw GradeTooHighException();
 	else
 		this->_grade--;
 }
 
 void Bureaucrat::downGrade() {
-	if (this->_grade == 1)
-		throw GradeTooHighException();
+	if (this->_grade == 150)
+		throw GradeTooLowException();
 	else
 		this->_grade++;
 }
-
