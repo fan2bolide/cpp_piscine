@@ -14,6 +14,12 @@ public:
 	Intern &operator=(const Intern &other);
 	Intern(const Intern &other);
 	AForm *makeForm(const std::string &formName, const std::string &formTarget);
+	class InvalidFormName : public std::exception {
+	public:
+		const char* what() const throw() {
+			return ("exception : the formname provided is invalid");
+		}
+	};
 };
 
 #endif

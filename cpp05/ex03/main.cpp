@@ -63,15 +63,19 @@ int main() {
 		{
 			std::cout << e.what();
 		}
-		Intern intern;
-		AForm *form = intern.makeForm("shrubbery creation", "bobby");
 		std::cout << "********************************************************************************" << std::endl;
-		std::cout << form->getName();
-		std::cout << std::endl;
-		std::cout << std::endl;
-		std::cout << std::endl;
+		try {
+			Intern intern;
+			AForm *form = intern.makeForm("shrubbery creation", "bobby");
+			std::cout << form->getName();
+			std::cout << std::endl;
+			delete form;
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
 		std::cout << "********************************************************************************" << std::endl;
-		{
+		try {
 			Intern  someRandomIntern;
 			AForm*   rrf;
 			rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
@@ -80,11 +84,13 @@ int main() {
 			std::cout << *rrf << std::endl;
 			delete rrf;
 		}
+		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
 		std::cout << "********************************************************************************" << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
-		delete form;
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

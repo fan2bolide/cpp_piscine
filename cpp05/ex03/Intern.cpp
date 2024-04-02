@@ -18,7 +18,7 @@ Intern::Intern(const Intern &other) {
 }
 
 AForm *Intern::makeForm(const std::string &formName, const std::string &formTarget) {
-	AForm *finalForm;
+	AForm *finalForm = NULL;
 	std::string formNames[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
 	AForm *forms[3] = {new RobotomyRequestForm(formTarget), new PresidentialPardonForm(formTarget), new ShrubberyCreationForm(formTarget)};
 	for (int i = 0; i < 3; ++i) {
@@ -27,5 +27,7 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &formTarg
 		else
 			delete forms[i];
 	}
+	if (!finalForm)
+		throw InvalidFormName();
 	return finalForm;
 }
