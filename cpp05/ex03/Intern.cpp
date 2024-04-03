@@ -31,3 +31,7 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &formTarg
 		throw InvalidFormName();
 	return finalForm;
 }
+
+const char* Intern::InvalidFormName::what() const throw() {
+	return "exception: invalid form name";
+}
