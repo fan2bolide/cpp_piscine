@@ -16,7 +16,9 @@ public:
 	AForm *makeForm(const std::string &formName, const std::string &formTarget);
 	class InvalidFormName : public std::exception {
 	public:
-		const char* what() const throw();
+		const char* what() const throw() {
+			return "exception: invalid form name";
+		}
 	};
 };
 
