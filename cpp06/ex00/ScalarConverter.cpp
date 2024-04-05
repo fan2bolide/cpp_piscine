@@ -13,15 +13,15 @@ ScalarConverter::~ScalarConverter() {
 
 int ScalarConverter::convert(const std::string& input) {
 	char charValue = 0;
-	int intValue = 0;
+	long intValue = 0;
 	float floatValue = 0;
 	double doubleValue = 0;
 
-	int i;
+	unsigned int i;
 	i = input.find('.');
 	if (input.find('.', i + 1) != std::string::npos) {
 		std::cout << "error: bad input" << std::endl;
-		return 400;
+		return (400);
 	}
 	if (input.length() == 1 && isprint(input[0]) && isalpha(input[0])) {
 		charValue = input[0];
@@ -36,7 +36,7 @@ int ScalarConverter::convert(const std::string& input) {
 		}
 		catch (std::exception &e) {
 			std::cout << "error: bad input" << std::endl;
-			return 400;
+			return (400);
 		}
 		floatValue = static_cast<float>(doubleValue);
 		intValue = static_cast<int>(doubleValue);
@@ -48,16 +48,28 @@ int ScalarConverter::convert(const std::string& input) {
 		std::cout << "char : Non displayable" << std::endl;
 	else
 		std::cout << "char : impossible" << std::endl;
-	if (input != "nan")
-		std::cout << "int : " << intValue << std::endl;
-	else
+	if (doubleValue > (std::numeric_limits<int>::max()))
+		std::cout << "int : overflow" << std::endl;
+	else if (doubleValue < (std::numeric_limits<int>::min()))
+		std::cout << "int : underflow" << std::endl;
+	else if (input == "nan")
 		std::cout << "int : impossible" << std::endl;
-	std::cout << "float : " << floatValue;
-	if (intValue == floatValue)
+	else
+		std::cout << "int : " << intValue << std::endl;
+	std::cout << "float : ";
+	if (input == "nan")
+		std::cout << "nan";
+	else
+		std::cout << floatValue;
+	if (intValue == floatValue && input.length() < 7 && input != "nan")
 		std::cout << ".0";
 	std::cout << "f" << std::endl;
-	std::cout << "double : " << doubleValue;
-	if (intValue == floatValue)
+	std::cout << "double : ";
+	if (input == "nan")
+		std::cout << "nan";
+	else
+		std::cout << doubleValue;
+	if (intValue == floatValue && input.length() < 7 && input != "nan")
 		std::cout << ".0";
 	std::cout << std::endl;
 	return (0);

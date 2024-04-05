@@ -4,10 +4,11 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <limits>
 
 class ScalarConverter {
-public:
 	ScalarConverter();
+public:
 	~ScalarConverter();
 	ScalarConverter &operator=(const ScalarConverter &other);
 	static int convert(const std::string& input);
