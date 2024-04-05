@@ -73,10 +73,10 @@ Array<T>::~Array() {
 
 template<typename T>
 void Array<T>::printArray() {
-	for (size_t i = 0 ; i < this->_size - 1 ; i++)
+	for (size_t i = 0 ; i < this->_size - 1 && _size != 0 ; i++)
 		std::cout << _array[i] << ", ";
 	if (size() != 0)
-		std::cout << _array[_size - 1];
+		std::cout << _array[this->_size - 1];
 	std::cout << std::endl;
 }
 

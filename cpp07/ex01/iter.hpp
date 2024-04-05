@@ -1,6 +1,8 @@
 #ifndef ITER_HPP
 #define ITER_HPP
 
+#include <sys/types.h>
+
 template <typename T, typename U>
 void	iter(T *array, size_t length, U(*f)(T &)) {
 	for (size_t i = 0;i < length;i++) {
