@@ -14,4 +14,3 @@ C &C::operator=(const C &other) {
 C::C(const C &other) {
 	(void)other;
 }
-
