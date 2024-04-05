@@ -11,3 +11,7 @@ Data::Data() {
 
 Data::~Data() {
 }
+
+void Data::throwExceptionBlou() {
+	throw blouException();
+}

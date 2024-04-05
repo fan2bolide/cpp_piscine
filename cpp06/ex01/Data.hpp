@@ -9,6 +9,7 @@ public:
 	~Data();
 	int intData;
 	std::string stringData;
+	void throwExceptionBlou();
 	class blouException : public std::exception {
 	public:
 		const char *what() const throw();

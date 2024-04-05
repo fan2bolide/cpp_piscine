@@ -4,12 +4,20 @@
 
 int main() {
 	Data *d = new Data();
-	std::cout << d->stringData << std::endl;
+	std::cout << "original data : \t\t" << d->stringData << std::endl;
 	uintptr_t ptr;
 	ptr = Serializer::serialize(d);
-	std::cout << ptr << std::endl;
-	std::cout << Serializer::deserialize(ptr)->stringData << std::endl;
-	std::cout << d << std::endl;
-	std::cout << Serializer::deserialize(ptr) << std::endl;
+	Data *f;
+	f = Serializer::deserialize(ptr);
+	std::cout << "serialized data : \t\t" << ptr << std::endl;
+	std::cout << "deserialized data : \t\t" << f->stringData << std::endl;
+	std::cout << "address of original data : \t" << d << std::endl;
+	std::cout << "address of deserialized data : \t"<< f << std::endl;
+	try {
+		f->throwExceptionBlou();
+	}
+	catch (...) {
+		std::cout << "exception thrown, Data instance still work after deserialisation" << std::endl;
+	}
 	return (0);
 }
