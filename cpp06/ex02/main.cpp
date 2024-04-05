@@ -8,7 +8,7 @@
 
 Base *generate() {
 	timeval tv;
-	gettimeofday(&tv, nullptr);
+	gettimeofday(&tv, NULL);
 	srand(tv.tv_usec);
 	switch (rand() % 3) {
 		case 0:
@@ -18,19 +18,19 @@ Base *generate() {
 		case 2:
 			return new C();
 	}
-	return nullptr;
+	return (NULL);
 }
 
 void identify(Base *p) {
-	if (dynamic_cast<A *>(p) != nullptr) {
+	if (dynamic_cast<A *>(p) != NULL) {
 		std::cout << "A" << std::endl;
 		return ;
 	}
-	if (dynamic_cast<B *>(p) != nullptr) {
+	if (dynamic_cast<B *>(p) != NULL) {
 		std::cout << "B" << std::endl;
 		return ;
 	}
-	if (dynamic_cast<C *>(p) != nullptr) {
+	if (dynamic_cast<C *>(p) != NULL) {
 		std::cout << "C" << std::endl;
 	}
 }
