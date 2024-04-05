@@ -30,7 +30,9 @@ int ScalarConverter::convert(const std::string& input) {
 		doubleValue = static_cast<double>(charValue);
 	} else {
 		try {
-			doubleValue = stod(input, nullptr);
+			std::stringstream ss;
+			ss << input;
+			ss >> doubleValue;
 		}
 		catch (std::exception &e) {
 			std::cout << "error: bad input" << std::endl;
