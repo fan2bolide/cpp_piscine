@@ -2,6 +2,23 @@
 #include "Array.hpp"
 
 int main() {
+	try {
+		std::cout << "================" << std::endl;
+		Array<int> array;
+		std::cout << "================" << std::endl;
+		Array<int> array2(38500);
+
+		std::cout << array2[31000] << std::endl;
+		array2[31000] = 42;
+		std::cout << array2[31000] << std::endl;
+		std::cout << array2[31001] << std::endl;
+
+//		array = array2;
+//		std::cout << array.size() << std::endl;
+	}
+	catch (std::exception &monfiac) {
+		std::cout << monfiac.what() << std::endl;
+	}
 	Array<int> array(5);
 	Array<int> array2(5);
 	Array<int> array3;

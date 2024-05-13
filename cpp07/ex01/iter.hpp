@@ -2,6 +2,7 @@
 #define ITER_HPP
 
 #include <sys/types.h>
+#include <iostream>
 
 template <typename T>
 void	iter(T *array, size_t length, void(*f)(T &)) {

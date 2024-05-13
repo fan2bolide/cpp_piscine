@@ -10,6 +10,7 @@ private:
 	const size_t _size;
 public:
 	Array();
+	Array(const Array &other);
 	Array(const unsigned int &n);
 	~Array();
 	size_t size();
@@ -58,16 +59,22 @@ Array<T>::Array() : _size(0) {
 	_array = new T[0];
 	std::cout << "Array default constructor called" << std::endl;
 }
+template<typename T>
+Array<T>::Array(const Array &other) {
+	*this = other;
+	std::cout << "Array copy constructor called" << std::endl;
+}
 
 template<typename T>
 Array<T>::Array(const unsigned int &n) : _size(n) {
 	_array = new T[n];
+	for (unsigned int i = 0;i < n;i++) {_array[i] = 0;}
 	std::cout << "Array number constructor called" << std::endl;
 }
 
 template<typename T>
 Array<T>::~Array() {
-	delete _array;
+	delete [] _array;
 	std::cout << "Array destructor called" << std::endl;
 }
 

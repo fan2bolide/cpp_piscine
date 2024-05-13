@@ -1,6 +1,6 @@
 NAME = ex01
 
-SRC		=	main.cpp
+SRC		=	ex01.cpp
 
 CXX		=	c++
 CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
