@@ -6,11 +6,11 @@
 template <typename T>
 class Array {
 private:
+    size_t _size;
 	T *_array;
-	const size_t _size;
 public:
 	Array();
-	Array(const Array &other);
+	Array(const Array<T> &other);
 	Array(const unsigned int &n);
 	~Array();
 	size_t size();
@@ -21,27 +21,33 @@ public:
 	class InvalidIndex : public std::exception {
 	public:
 		const char *what() const throw() {
-			return "exception: index is out of bound";
+			return "exception: Array: index is out of bound";
 		}
 	};
 };
 
 template<typename T>
 T &Array<T>::operator[](const size_t &n) {
-	if (n < 0 || n >= _size)
+	if (n >= _size)
 		throw InvalidIndex();
 	return _array[n];
 }
 
 template<typename T>
 T &Array<T>::operator[](const size_t &n) const {
-	if (n < 0 || n >= _size)
+	if (n >= _size)
 		throw InvalidIndex();
 	return _array[n];
 }
 
 template<typename T>
 Array<T> &Array<T>::operator=(const Array<T> &other) {
+    std::cout << "assignment operator called" << std::endl;
+    if (other._size > _size) {
+        delete[] _array;
+        _array = new T[other._size];
+    }
+    _size = other._size;
 	if (this != &other) {
 		for (size_t i = 0;i < other._size;i++)
 			(*this)[i] = other[i];
@@ -55,12 +61,11 @@ size_t Array<T>::size() {
 }
 
 template<typename T>
-Array<T>::Array() : _size(0) {
-	_array = new T[0];
+Array<T>::Array() : _size(0), _array(new T[0]) {
 	std::cout << "Array default constructor called" << std::endl;
 }
 template<typename T>
-Array<T>::Array(const Array &other) {
+Array<T>::Array(const Array<T> &other) : _size(other._size), _array(new T[_size]){
 	*this = other;
 	std::cout << "Array copy constructor called" << std::endl;
 }
