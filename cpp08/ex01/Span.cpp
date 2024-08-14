@@ -1,59 +1,43 @@
 #include "Span.hpp"
 
-Span::Span() : array(new int[0]), _capacity(0), _size(0) {
+Span::Span() : vector(), max_size(10) {
 }
 
-Span::Span(size_t size) : _capacity(size), _size(0) {
-	array = new int[_capacity];
-	for (size_t i = 0; i < _capacity; i++) {
-		this->array[i] = 0;
-	}
+Span::Span(size_t size) : vector(), max_size(size) {
+	std::vector<int>()
 }
 
-Span::Span(const Span &other) : _capacity(other._capacity), _size(0) {
-	array = new int[_capacity];
-	for (size_t i = 0; i < _capacity; i++) {
-		this->array[i] = other.array[i];
-	}
+Span::Span(const Span &other) : vector(other.max_size) {
 }
 
-Span::~Span() {
-	delete [] array;
-}
+Span::~Span() {}
 
 Span &Span::operator=(const Span &other) {
-	if (this != &other) {
-		_size = 0;
-		delete [] array;
-		array = new int[_capacity];
-		for (size_t i = 0; i < _capacity; i++) {
-			this->array[i] = other.array[i];
-		}
-	}
+	vector = other.vector;
 	return *this;
 }
 
 void Span::addNumber(int number) {
-	if (_size >= _capacity)
+	if (vector.size() < max_size)
+		vector.push_back(number);
+	else
 		throw spanOverFlow();
-	array[_size] = number;
-	_size++;
 }
 
 int Span::min() {
-	int min = INT32_MIN;
-	for (size_t i = 0; i < _size; i++) {
-		if (min > array[i])
-			min = array[i];
+	int min = vector[0];
+	for (std::vector<int>::iterator it = vector.begin() + 1; it != vector.end() ; it++) {
+		if (*it < min)
+			min = *it;
 	}
 	return (min);
 }
 
 int Span::max() {
-	int max = INT32_MAX;
-	for (size_t i = 0; i < _size; i++) {
-		if (max < array[i])
-			max = array[i];
+	int max = vector[0];
+	for (std::vector<int>::iterator it = vector.begin() + 1; it != vector.end() ; it++) {
+		if (*it > max)
+			max = *it;
 	}
 	return (max);
 }
@@ -62,13 +46,23 @@ int Span::longestSpan() {
 	return this->min() - this->max();
 }
 
+static int abs(int value) {
+	if (value < 0)
+		return value * -1;
+	return value;
+}
+
 int Span::shortestSpan() {
-	int shortest = this->max();
-	if (_size < 2)
+	int shortest = -1;
+	if (vector.size() < 2)
 		throw notEnoughNumbers();
-	for (size_t i = 0;i + 1 < _size;i++) {
-		
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end() ; it++) {
+		for (std::vector<int>::iterator it2 = vector.begin(); it2 != vector.end() - 1 ; it2++) {
+			if ((shortest > abs(*it - *it2) || shortest == -1) && it != it2)
+				shortest = abs(*it - *it2);
+		}
 	}
+	return (shortest);
 }
 
 
