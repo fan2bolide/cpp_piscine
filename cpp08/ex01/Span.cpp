@@ -1,10 +1,9 @@
 #include "Span.hpp"
 
-Span::Span() : vector(), max_size(10) {
+Span::Span() : max_size(10), vector() {
 }
 
-Span::Span(size_t size) : vector(), max_size(size) {
-	std::vector<int>()
+Span::Span(size_t size) : max_size(size), vector() {
 }
 
 Span::Span(const Span &other) : vector(other.max_size) {
@@ -42,14 +41,16 @@ int Span::max() {
 	return (max);
 }
 
-int Span::longestSpan() {
-	return this->min() - this->max();
-}
-
-static int abs(int value) {
+int abs(int value) {
 	if (value < 0)
 		return value * -1;
 	return value;
+}
+
+int Span::longestSpan() {
+	if (vector.size() < 2)
+		throw notEnoughNumbers();
+	return abs(this->min() - this->max());
 }
 
 int Span::shortestSpan() {

@@ -1,11 +1,11 @@
 #include "easyfind.hpp"
-#include <array>
+#include <vector>
 #include <iostream>
 
 int main() {
-	std::array<int, 10> arr;
+	std::vector<int> arr;
 	for (int i = 0;i < 10;i++) {
-		arr[i] = i + 1;
+		arr.push_back(i + 1);
 	}
 	try {
 		std::cout << "first try" << std::endl;
