@@ -1,7 +1,6 @@
-NAME	=	ex01
+NAME	=	ex02
 
-SRC		=	main.cpp \
-			Span.cpp
+SRC		=	main.cpp
 
 CXX		=	c++
 CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD -g3
