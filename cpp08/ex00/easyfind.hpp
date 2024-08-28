@@ -1,4 +1,5 @@
 #include <exception>
+#include <algorithm>
 #define RED "\e[0;31m"
 #define COLOR_RESET "\e[0m"
 
@@ -11,10 +12,7 @@ public:
 
 template <typename T>
 int easyfind(T &container, int value) {
-	for (size_t i = 0;i < container.size(); i++) {
-		if (value == container[i]) {
-			return (container[i]);
-		}
-	}
+	if (std::find(container.begin(), container.end(), value) != container.end())
+		return (*(std::find(container.begin(), container.end(), value)));
 	throw notThatEasy();
 }
