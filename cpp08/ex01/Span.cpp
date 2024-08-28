@@ -23,6 +23,11 @@ void Span::addNumber(int number) {
 		throw spanOverFlow();
 }
 
+template <typename iterator>
+void Span::addNumbers(iterator begin, iterator end) {
+	vector.insert(vector.end(), begin, end);
+}
+
 int Span::min() {
 	int min = vector[0];
 	for (std::vector<int>::iterator it = vector.begin() + 1; it != vector.end() ; it++) {

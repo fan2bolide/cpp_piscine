@@ -21,6 +21,8 @@ public:
 	~Span();
 	Span &operator=(const Span &other);
 	void addNumber(int number);
+	template <typename iterator>
+	void addNumbers(iterator begin, iterator end);
 	class spanOverFlow : std::exception {
 		const char *what() const throw() {
 			return RED"Span: exception: span is already full" COLOR_RESET;

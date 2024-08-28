@@ -25,6 +25,13 @@ int main()
 			std::cout << *it << std::endl;
 			++it;
 		}
+		std::cout << "mutant stack reverse order :" << std::endl;
+		MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+		MutantStack<int>::reverse_iterator rite = mstack.rend();
+		while (rit != rite) {
+			std::cout << *rit << std::endl;
+			++rit;
+		}
 	}
 	{
 		MutantStack<int> s(mstack);
