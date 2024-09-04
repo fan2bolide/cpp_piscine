@@ -23,7 +23,7 @@ public:
 	void addNumber(int number);
 	template <typename iterator>
 	void addNumber(iterator begin, iterator end) {
-		if (end - begin < static_cast<long>(max_size - vector.size()))
+		if (end - begin < static_cast<long>(max_size - vector.size() + 1))
 	        vector.insert(vector.end(), begin, end);
 		else
 		    throw spanOverFlow();

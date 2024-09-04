@@ -1,18 +1,16 @@
 #include "Span.hpp"
 
-Span::Span() : max_size(10), vector() {
-}
+Span::Span() : max_size(10), vector() {}
 
-Span::Span(size_t size) : max_size(size), vector() {
-}
+Span::Span(size_t size) : max_size(size), vector() {}
 
-Span::Span(const Span &other) : vector(other.max_size) {
-}
+Span::Span(const Span &other) : vector(other.vector.begin(), other.vector.end()) {}
 
 Span::~Span() {}
 
 Span &Span::operator=(const Span &other) {
-	vector = other.vector;
+    if (this != &other)
+        vector = other.vector;
 	return *this;
 }
 
