@@ -22,13 +22,18 @@ public:
 	Span &operator=(const Span &other);
 	void addNumber(int number);
 	template <typename iterator>
-	void addNumbers(iterator begin, iterator end);
-	class spanOverFlow : std::exception {
+	void addNumber(iterator begin, iterator end) {
+		if (end - begin < static_cast<long>(max_size - vector.size()))
+	        vector.insert(vector.end(), begin, end);
+		else
+		    throw spanOverFlow();
+	}
+	class spanOverFlow : public std::exception {
 		const char *what() const throw() {
 			return RED"Span: exception: span is already full" COLOR_RESET;
 		}
 	};
-	class notEnoughNumbers : std::exception {
+	class notEnoughNumbers : public std::exception {
 		const char *what() const throw() {
 			return RED"Span: exception: not enough numbers to compute span" COLOR_RESET;
 		}
