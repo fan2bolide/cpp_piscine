@@ -29,11 +29,13 @@ public:
 		    throw spanOverFlow();
 	}
 	class spanOverFlow : public std::exception {
+	public:
 		const char *what() const throw() {
 			return RED"Span: exception: span is already full" COLOR_RESET;
 		}
 	};
 	class notEnoughNumbers : public std::exception {
+	public:
 		const char *what() const throw() {
 			return RED"Span: exception: not enough numbers to compute span" COLOR_RESET;
 		}
