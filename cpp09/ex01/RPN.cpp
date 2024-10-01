@@ -1,6 +1,7 @@
 #include "RPN.hpp"
 #include <iostream>
 #include <sstream>
+#include <vector>
 RPN::RPN() {}
 
 void RPN::printStack() {
