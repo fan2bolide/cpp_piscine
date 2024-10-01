@@ -11,7 +11,7 @@ public:
 };
 
 template <typename T>
-int easyfind(T &container, int value) {
+int easyfind(const T &container, int value) {
 	if (std::find(container.begin(), container.end(), value) != container.end())
 		return (*(std::find(container.begin(), container.end(), value)));
 	throw notThatEasy();

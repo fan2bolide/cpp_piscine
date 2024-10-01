@@ -9,8 +9,9 @@ Span::Span(const Span &other) : vector(other.vector.begin(), other.vector.end())
 Span::~Span() {}
 
 Span &Span::operator=(const Span &other) {
-    if (this != &other)
-        vector = other.vector;
+	if (this != &other) {
+		vector = other.vector;
+	}
 	return *this;
 }
 
