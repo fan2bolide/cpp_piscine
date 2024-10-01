@@ -5,7 +5,6 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-#include <sys/syslimits.h>
 #include <istream>
 #include <sstream>
 #include <algorithm>
@@ -44,7 +43,7 @@ BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(string file) {
 	std::ifstream inFile;
 	string line;
-	inFile.open(file);
+	inFile.open(file.c_str());
 	if (inFile.fail())
 		throw (CantOpenFile());
 	std::getline(inFile, line);
@@ -79,7 +78,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
 void BitcoinExchange::processInput(const std::string &inputFile) {
 	std::ifstream inFile;
 	string line;
-	inFile.open(inputFile);
+	inFile.open(inputFile.c_str());
 	if (inFile.fail())
 		throw (CantOpenFile());
 	std::getline(inFile, line);
