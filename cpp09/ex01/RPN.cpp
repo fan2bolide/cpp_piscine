@@ -4,6 +4,18 @@
 #include <vector>
 RPN::RPN() {}
 
+RPN::RPN(const RPN &other) {
+	*this = other;
+}
+
+RPN &RPN::operator=(const RPN &other) {
+	if (this != &other) {
+		stack = other.stack;
+		this->res = other.res;
+	}
+	return *this;
+}
+
 void RPN::printStack() {
 	std::vector<int> vec;
 	std::stack<int> cp;
