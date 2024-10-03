@@ -3,7 +3,12 @@
 #include <iostream>
 
 int main(int argc, char **argv) {
-	try { PmergeMe(argc, argv); }
+	if (argc <= 2)
+		return (1);
+	try {
+		PmergeMe mergeSimpson(argc, argv);
+		mergeSimpson.sort();
+	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

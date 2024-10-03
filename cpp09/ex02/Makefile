@@ -4,7 +4,7 @@ SRC		=	main.cpp\
 			PmergeMe.cpp
 
 CXX		=	c++
-CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD
+CXXFLAGS=	-Wall -Wextra -Werror -std=c++98 -MD -fsanitize=address -g3
 OBJS_D	=	./
 SRCS_D	=	./
 DEPENDS	=	$(SRC:%.cpp=%.d)
