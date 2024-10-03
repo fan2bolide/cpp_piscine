@@ -87,7 +87,7 @@ void BitcoinExchange::processInput(const std::string &inputFile) {
 		if (line.empty() || line == "\n")
 			break;
 		if (line.find('|') == std::string::npos) {
-			std::cout << "error: bad file format" << std::endl;
+			std::cout << "error: bad line format: " << line << std::endl;
 			continue;
 		}
 		std::stringstream ss(line);
@@ -101,9 +101,9 @@ void BitcoinExchange::processInput(const std::string &inputFile) {
 				std::cout << "error: bad input => " << date << std::endl;
 			else if (checkValue(value)) {
 				if (value < 0)
-					std::cout << "error: not a positive number." << std::endl;
+					std::cout << "error: not a positive number: " << value << std::endl;
 				if (value > 1000)
-					std::cout << "error: too large number." << std::endl;
+					std::cout << "error: too large number: " << value << std::endl;
 			}
 		}
 		else {
