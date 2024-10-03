@@ -30,6 +30,10 @@ public:
 	public:
 		const char *what() const throw() { return "Error: Bad input."; }
 	};
+	class ForbiddenDivision : public std::exception {
+	public:
+		const char *what() const throw() { return "Error: Division by 0 is forbidden."; }
+	};
 };
 
 #endif

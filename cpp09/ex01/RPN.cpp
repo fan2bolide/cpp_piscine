@@ -93,6 +93,8 @@ RPN::RPN(const string &input) {
 						break;
 					}
 					case '/' : {
+						if (op1 == 0)
+							throw ForbiddenDivision();
 						stack.push(op2 / op1);
 						break;
 					}
