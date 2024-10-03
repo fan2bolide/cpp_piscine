@@ -86,8 +86,10 @@ void BitcoinExchange::processInput(const std::string &inputFile) {
 		std::getline(inFile, line);
 		if (line.empty() || line == "\n")
 			break;
-		if (line.find('|') == std::string::npos)
-			throw(BadFile());
+		if (line.find('|') == std::string::npos) {
+			std::cout << "error: bad file format" << std::endl;
+			continue;
+		}
 		std::stringstream ss(line);
 		double value;
 		string stringValue;
