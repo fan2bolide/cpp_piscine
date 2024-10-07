@@ -75,6 +75,8 @@ RPN::RPN(const string &input) {
 		}
 		else {
 			if (tmp == '*' || tmp == '-' || tmp == '+' || tmp == '/') {
+				if (stack.size() < 2)
+					throw BadInput();
 				int op1 = stack.top();
 				stack.pop();
 				int op2 = stack.top();
