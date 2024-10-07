@@ -92,13 +92,19 @@ void BitcoinExchange::processInput(const std::string &inputFile) {
 		}
 		std::stringstream ss(line);
 		double value;
+		char tmp;
 		string stringValue;
 		string date;
 		std::getline(ss, date, '|');
 		ss >> value;
-		if (checkValue(value) || checkDate(date)) {
+		ss << line;
+		std::getline(ss, date, '|');
+		ss >> tmp;
+		if (checkValue(value) || checkDate(date) || (value == 0 && tmp != '0')) {
 			if (checkDate(date))
 				std::cout << "error: bad input => " << date << std::endl;
+			else if (value == 0 && tmp != '0')
+				std::cout << "error: bad input => " << line << std::endl;
 			else if (checkValue(value)) {
 				if (value < 0)
 					std::cout << "error: not a positive number: " << value << std::endl;
