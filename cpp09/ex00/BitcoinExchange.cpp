@@ -1,5 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <cstdio>
 #include <ctime>
 #include <fstream>
 #include <iostream>
@@ -7,7 +6,6 @@
 #include <string>
 #include <istream>
 #include <sstream>
-#include <algorithm>
 #include <utility>
 
 using std::string;
