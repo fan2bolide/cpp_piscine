@@ -74,7 +74,7 @@ RPN::RPN(const string &input) {
 			stack.push(tmp - '0');
 		}
 		else {
-			if (tmp == '*' || tmp == '-' || tmp == '+' || tmp == '/') {
+			if (isOperator(tmp)) {
 				if (stack.size() < 2)
 					throw BadInput();
 				int op1 = stack.top();

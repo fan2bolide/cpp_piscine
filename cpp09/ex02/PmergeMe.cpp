@@ -1,6 +1,8 @@
 #include "PmergeMe.hpp"
 #include <cctype>
+#include <cstddef>
 #include <ctime>
+#include <ostream>
 #include <sstream>
 #include <iostream>
 
@@ -19,8 +21,8 @@ PmergeMe::~PmergeMe() {}
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 	if (this != &other) {
-		_vector = other._vector;
-		_deque = other._deque;
+		this->high_vector = other.high_vector;
+		// _deque = other._deque;
 	}
 	return (*this);
 }
@@ -36,8 +38,8 @@ int PmergeMe::parseInput(int argc, char **input) {
 			if (std::isalpha(*input[i]))
 				return (-1);
 		}
-		this->_vector.push_back(value);
-		this->_deque.push_back(value);
+		this->high_vector.push_back(new Pair(value));
+		this->high_deque.push_back(new Pair(value));
 	}
 	return (0);
 }
@@ -48,169 +50,222 @@ void PmergeMe::sort() {
 	std::cout << "After : " << std::endl;
 
 	std::clock_t vectorBeginTime = clock();
-	this->vectorMergeInsert(0, _vector.size() - 1);
+	initPairsVector();
+	while (high_vector[0]->getHighPair() != NULL) {
+		this->vectorSort();
+	}
 	double vectorSortTime = ((double)(clock() - vectorBeginTime)) / CLOCKS_PER_SEC;
 	std::cout << "\tVector : " << std::endl;
 	this->printVector();
 
 	std::clock_t dequeBeginTime = clock();
-	this->dequeMergeInsert(0, _deque.size() - 1);
+	initPairsDeque();
+	while (high_deque[0]->getHighPair() != NULL) {
+		this->dequeSort();
+	}
 	double dequeSortTime = ((double)(clock() - dequeBeginTime)) / CLOCKS_PER_SEC;
 	std::cout << "\tDeque : " << std::endl;
 	this->printDeque();
-
 
 	std::cout << "vector time : " << vectorSortTime * 1000000 << " μs" << std::endl;
 	std::cout << "deque time : " << dequeSortTime * 1000000 << " μs" << std::endl;
 }
 
+void printPair(Pair *pair) {
+	if (pair != NULL) {
+		if (pair->getHighPair() == NULL || pair->getLowPair() == NULL) {
+			std::cout << pair->getHigh();
+		} else {
+			printPair(pair->getLowPair());
+			printPair(pair->getHighPair());
+		}
+	}
+}
+
 /* ---------------------------------------------- Vector ----------------------------------------------- */
 
 void PmergeMe::printVector() {
-	std::vector<int>::iterator it = _vector.begin();
-	while (it != _vector.end()) {
-		std::cout << *it << " ";
-		it++;
-	}
-	std::cout << std::endl;
-}
-
-void PmergeMe::printVector(const std::vector<int> &vec) {
-	std::vector<int>::const_iterator it = vec.begin();
-	while (it != vec.end()) {
-		std::cout << *it << " ";
-		it++;
-	}
-	std::cout << std::endl;
-}
-
-void PmergeMe::vectorInsertionSort(int begin, int end) {
-    for (int i = begin; i < end; i++) {
-        int tempVal = _vector[i + 1];
-        int j = i + 1;
-        while (j > begin && _vector[j - 1] > tempVal) {
-            _vector[j] = _vector[j - 1];
-            j--;
-        }
-        _vector[j] = tempVal;
-    }
-}
-
-void PmergeMe::vectorMergeInsert(int begin, int end) {
-	if (end - begin > 1) {
-		int mid = (begin + end) / 2;
-		this->vectorMergeInsert(begin, mid);
-		this->vectorMergeInsert(mid + 1, end);
-		this->vectorMerge(begin, mid, end);
-	} else {
-        vectorInsertionSort(begin, end);
-    }
-}
-
-void PmergeMe::vectorMerge(int begin, int mid, int end) {
-	int size1 = mid - begin + 1;
-	int size2 = end - mid;
-	std::vector<int> left(size1);
-	std::vector<int> right(size2);
-	for (int i = 0 ; i < size1 ; i++) {
-		left[i] = _vector[begin + i];
-	}
-
-	for (int i = 0 ; i < size2 ; i++) {
-		right[i] = _vector[mid + 1 + i];
-
-	}
-
-	int ri = 0;
-	int li = 0;
-	for (int i = begin; i <= end; i++) {
-		if (ri == size2) {
-			this->_vector[i] = left[li];
-			li++;
-		} else if (li == size1) {
-			this->_vector[i] = right[ri];
-			ri++;
-		} else if (right[ri] > left[li]) {
-			this->_vector[i] = left[li];
-			li++;
-		} else {
-			this->_vector[i] = right[ri];
-			ri++;
+	for (size_t i = 0; i < this->high_vector.size(); i++) {
+		printPair(this->high_vector[i]);
+		if (i < high_vector.size() - 1) {
+			std::cout << ", ";
 		}
 	}
+	std::cout << std::endl;
+}
+
+void printPairVector(std::vector<Pair *> &vector) {
+	for (size_t i = 0; i < vector.size(); i++) {
+		printPair(vector[i]);
+		std::cout << ", ";
+	}
+	std::cout << std::endl;
+}
+
+void PmergeMe::initPairsVector() {
+	while (high_vector.size() != 1) {
+		std::vector<Pair *> tmp;
+		for (size_t i = 0; i < high_vector.size(); i += 2) {
+			if (i + 1 < high_vector.size()) {
+				tmp.push_back(new Pair(high_vector[i], high_vector[i + 1]));
+			}
+			else {
+				tmp.push_back(new Pair(high_vector[i]));
+			}
+		}
+		high_vector = tmp;
+	}
+}
+
+void binaryInsertVector(std::vector<Pair *> &vec, Pair *pair) {
+	long begin = 0;
+	long end = vec.size() - 1;
+	long mid = 0;
+
+	while (begin <= end) {
+		mid = begin + ((end - begin) / 2);
+		if (pair->getHigh() < vec[mid]->getHigh())
+			end = mid - 1;
+		else if (pair->getHigh() >= vec[mid]->getHigh()) {
+			begin = mid + 1;
+			if (pair->getHigh() == vec[mid]->getHigh())
+				break;
+		}
+	}
+	vec.insert(vec.begin() + begin, pair);
+}
+
+void PmergeMe::jacobsthalVector(int current_index, int previous_index) {
+	int i = current_index;
+	if (i > (int)low_vector.size() - 1)
+		i = low_vector.size() - 1;
+	if (low_vector.size() == 0)
+		return;
+	while (i >= 0) {
+		binaryInsertVector(high_vector, low_vector[i]);
+		low_vector.erase(low_vector.begin() + i);
+		i--;
+	}
+	jacobsthalVector(previous_index * 2 + current_index, current_index);
+}
+
+void PmergeMe::vectorSort() {
+	std::vector<Pair *> main;
+
+	main = high_vector;
+	high_vector = std::vector<Pair *>();
+
+	if (main[0]->getHighPair() != NULL) {
+		high_vector.push_back(main[0]->getLowPair());
+		high_vector.push_back(main[0]->getHighPair());
+	}
+	else {
+		high_vector.push_back(main[0]);
+	}
+	size_t i = 1;
+	while (i < main.size()) {
+		if (main[i]->getLowPair() != NULL) {
+			high_vector.push_back(main[i]->getHighPair());
+			low_vector.push_back(main[i]->getLowPair());
+		}
+		else {
+			high_vector.push_back(main[i]);
+		}
+		i++;
+	}
+	jacobsthalVector(1, 1);
 }
 
 /* ---------------------------------------------- Deque ------------------------------------------------ */
 
 void PmergeMe::printDeque() {
-	std::deque<int>::iterator it = _deque.begin();
-	while (it != _deque.end()) {
-		std::cout << *it << " ";
-		it++;
+	for (size_t i = 0; i < this->high_deque.size(); i++) {
+		printPair(this->high_deque[i]);
+		if (i < high_deque.size() - 1) {
+			std::cout << ", ";
+		}
 	}
 	std::cout << std::endl;
 }
 
-void PmergeMe::printDeque(const std::deque<int> &vec) {
-	std::deque<int>::const_iterator it = vec.begin();
-	while (it != vec.end()) {
-		std::cout << *it << " ";
-		it++;
+void printPairDeque(std::vector<Pair *> &vector) {
+	for (size_t i = 0; i < vector.size(); i++) {
+		printPair(vector[i]);
+		std::cout << ", ";
 	}
 	std::cout << std::endl;
 }
 
-void PmergeMe::dequeMergeInsert(int begin, int end) {
-	if (end - begin > 1) {
-		int mid = (begin + end) / 2;
-		this->dequeMergeInsert(begin, mid);
-		this->dequeMergeInsert(mid + 1, end);
-		this->dequeMerge(begin, mid, end);
-	} else {
-        dequeInsertionSort(begin, end);
-    }
-}
-
-void PmergeMe::dequeMerge(int begin, int mid, int end) {
-	int size1 = mid - begin + 1;
-	int size2 = end - mid;
-	std::deque<int> left(size1);
-	std::deque<int> right(size2);
-	for (int i = 0 ; i < size1 ; i++) {
-		left[i] = _deque[begin + i];
-	}
-
-	for (int i = 0 ; i < size2 ; i++) {
-		right[i] = _deque[mid + 1 + i];
-	}
-
-	int ri = 0;
-	int li = 0;
-	for (int i = begin; i <= end; i++) {
-		if (ri == size2) {
-			this->_deque[i] = left[li];
-			li++;
-		} else if (li == size1) {
-			this->_deque[i] = right[ri];
-			ri++;
-		} else if (right[ri] > left[li]) {
-			this->_deque[i] = left[li];
-			li++;
-		} else {
-			this->_deque[i] = right[ri];
-			ri++;
+void PmergeMe::initPairsDeque() {
+	while (high_deque.size() != 1) {
+		std::deque<Pair *> tmp;
+		for (size_t i = 0; i < high_deque.size(); i += 2) {
+			if (i + 1 < high_deque.size()) {
+				tmp.push_back(new Pair(high_deque[i], high_deque[i + 1]));
+			}
+			else {
+				tmp.push_back(new Pair(high_deque[i]));
+			}
 		}
+		high_deque = tmp;
 	}
 }
 
-void PmergeMe::dequeInsertionSort(int begin, int end) {
-	for (int i = begin; i < end; i++) {
-		int tempVal = this->_deque[i + 1];
-		int j = i + 1;
-		while (j > begin && this->_deque[j - 1] > tempVal) {
-			this->_deque[j] = this->_deque[j - 1];
-			j--;
+void binaryInsertDeque(std::deque<Pair *> &deq, Pair *pair) {
+	long begin = 0;
+	long end = deq.size() - 1;
+	long mid = 0;
+
+	while (begin <= end) {
+		mid = begin + ((end - begin) / 2);
+		if (pair->getHigh() < deq[mid]->getHigh())
+			end = mid - 1;
+		else if (pair->getHigh() >= deq[mid]->getHigh()) {
+			begin = mid + 1;
+			if (pair->getHigh() == deq[mid]->getHigh())
+				break;
 		}
-		this->_deque[j] = tempVal;
 	}
+	deq.insert(deq.begin() + begin, pair);
+}
+
+void PmergeMe::jacobsthalDeque(int current_index, int previous_index) {
+	int i = current_index;
+	if (i > (int)low_deque.size() - 1)
+		i = low_deque.size() - 1;
+	if (low_deque.size() == 0)
+		return;
+	while (i >= 0) {
+		binaryInsertDeque(high_deque, low_deque[i]);
+		low_deque.erase(low_deque.begin() + i);
+		i--;
+	}
+	jacobsthalDeque(previous_index * 2 + current_index, current_index);
+}
+
+void PmergeMe::dequeSort() {
+	std::deque<Pair *> main;
+
+	main = high_deque;
+	high_deque = std::deque<Pair *>();
+
+	if (main[0]->getHighPair() != NULL) {
+		high_deque.push_back(main[0]->getLowPair());
+		high_deque.push_back(main[0]->getHighPair());
+	}
+	else {
+		high_deque.push_back(main[0]);
+	}
+	size_t i = 1;
+	while (i < main.size()) {
+		if (main[i]->getLowPair() != NULL) {
+			high_deque.push_back(main[i]->getHighPair());
+			low_deque.push_back(main[i]->getLowPair());
+		}
+		else {
+			high_deque.push_back(main[i]);
+		}
+		i++;
+	}
+	jacobsthalDeque(1, 1);
 }

@@ -4,6 +4,7 @@
 #include <vector>
 #include <deque>
 #include <exception>
+#include "Pair.hpp"
 
 #define RED "\e[0;31m"
 #define COLOR_RESET "\e[0m"
@@ -13,20 +14,21 @@ private:
 	PmergeMe(const PmergeMe &other);
 	PmergeMe();
 
-	std::vector<int> _vector;
 	int parseInput(int argc, char **input);
-	void printVector();
-	void printVector(const std::vector<int> &vec);
-	void vectorMergeInsert(int begin, int end);
-	void vectorMerge(int begin, int mid, int end);
-	void vectorInsertionSort(int begin, int end);
 
-	std::deque<int> _deque;
+	std::vector<Pair *> high_vector;
+	std::vector<Pair *> low_vector;
+	void printVector();
+	void vectorSort();
+	void initPairsVector();
+	void jacobsthalVector(int current_index, int previous_index);
+
+	std::deque<Pair *> high_deque;
+	std::deque<Pair *> low_deque;
 	void printDeque();
-	void printDeque(const std::deque<int> &deq);
-	void dequeMergeInsert(int begin, int end);
-	void dequeMerge(int begin, int mid, int end);
-	void dequeInsertionSort(int begin, int end);
+	void dequeSort();
+	void initPairsDeque();
+	void jacobsthalDeque(int current_index, int previous_index);
 public:
 	PmergeMe(int argc, char **argv);
 	~PmergeMe();
