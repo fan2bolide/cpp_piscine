@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
+#include <any>
 #include <cctype>
+#include <cmath>
 #include <cstddef>
 #include <ctime>
 #include <ostream>
@@ -22,7 +24,7 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 	if (this != &other) {
 		this->high_vector = other.high_vector;
-		// _deque = other._deque;
+		this->high_deque = other.high_deque;
 	}
 	return (*this);
 }
@@ -44,6 +46,16 @@ int PmergeMe::parseInput(int argc, char **input) {
 	return (0);
 }
 
+void isSort(std::vector<Pair *> &vec) {
+	for (size_t i = 0 ; i < vec.size() - 1 ; i++) {
+		if (vec[i]->getHigh() > vec[i + 1]->getHigh()) {
+			std::cout << "not sorted" << std::endl;
+			return;
+		}
+	}
+	std::cout << "sorted" << std::endl;
+}
+
 void PmergeMe::sort() {
 	std::cout << "Before : " << std::endl;
 	this->printVector();
@@ -51,31 +63,35 @@ void PmergeMe::sort() {
 
 	std::clock_t vectorBeginTime = clock();
 	initPairsVector();
-	while (high_vector[0]->getHighPair() != NULL) {
-		this->vectorSort();
-	}
+	gbVector = high_vector;
+	// while (high_vector[0]->getHighPair() != NULL) {
+	// 	this->vectorSort();
+	// }
 	double vectorSortTime = ((double)(clock() - vectorBeginTime)) / CLOCKS_PER_SEC;
 	std::cout << "\tVector : " << std::endl;
 	this->printVector();
+	isSort(high_vector);
 
-	std::clock_t dequeBeginTime = clock();
-	initPairsDeque();
-	while (high_deque[0]->getHighPair() != NULL) {
-		this->dequeSort();
-	}
-	double dequeSortTime = ((double)(clock() - dequeBeginTime)) / CLOCKS_PER_SEC;
-	std::cout << "\tDeque : " << std::endl;
-	this->printDeque();
+	// std::clock_t dequeBeginTime = clock();
+	// initPairsDeque();
+	// while (high_deque[0]->getHighPair() != NULL and high_deque[0]->getLowPair() != NULL) {
+	// 	this->dequeSort();
+	// }
+	// double dequeSortTime = ((double)(clock() - dequeBeginTime)) / CLOCKS_PER_SEC;
+	// std::cout << "\tDeque : " << std::endl;
+	// this->printDeque();
 
 	std::cout << "vector time : " << vectorSortTime * 1000000 << " μs" << std::endl;
-	std::cout << "deque time : " << dequeSortTime * 1000000 << " μs" << std::endl;
+	// std::cout << "deque time : " << dequeSortTime * 1000000 << " μs" << std::endl;
+	// delete this->gbDeque[0];
+	delete this->gbVector[0];
 }
 
 void printPair(Pair *pair) {
 	if (pair != NULL) {
-		if (pair->getHighPair() == NULL || pair->getLowPair() == NULL) {
+		if (pair->getHighPair() == NULL && pair->getLowPair() == NULL)
 			std::cout << pair->getHigh();
-		} else {
+		else {
 			printPair(pair->getLowPair());
 			printPair(pair->getHighPair());
 		}
@@ -83,6 +99,7 @@ void printPair(Pair *pair) {
 }
 
 /* ---------------------------------------------- Vector ----------------------------------------------- */
+
 
 void PmergeMe::printVector() {
 	for (size_t i = 0; i < this->high_vector.size(); i++) {
@@ -103,27 +120,40 @@ void printPairVector(std::vector<Pair *> &vector) {
 }
 
 void PmergeMe::initPairsVector() {
-	while (high_vector.size() != 1) {
-		std::vector<Pair *> tmp;
-		for (size_t i = 0; i < high_vector.size(); i += 2) {
-			if (i + 1 < high_vector.size()) {
-				tmp.push_back(new Pair(high_vector[i], high_vector[i + 1]));
-			}
-			else {
-				tmp.push_back(new Pair(high_vector[i]));
-			}
+	std::cout << "init" << std::endl;
+	std::vector<Pair *> tmp;
+	Pair *rest = NULL;
+	for (size_t i = 0; i < high_vector.size(); i += 2) {
+		if (i + 1 < high_vector.size()) {
+			tmp.push_back(new Pair(high_vector[i], high_vector[i + 1]));
 		}
-		high_vector = tmp;
+		else {
+			rest = high_vector[i];
+		}
 	}
+	high_vector = tmp;
+	printPairVector(tmp);
+	if (high_vector.size() > 1)
+		initPairsVector();
+	if (high_vector.size() != 0)
+		vectorSort(rest);
 }
 
-void binaryInsertVector(std::vector<Pair *> &vec, Pair *pair) {
+void binaryInsertVector(std::vector<Pair *> &vec, Pair *pair, int jacobsthal) {
 	long begin = 0;
-	long end = vec.size() - 1;
+	long end = std::pow(2, jacobsthal) - 1;
 	long mid = 0;
 
+	// std::cout << "inserting " << pair->getHigh() << std::endl;
+	// std::cout << "jcb: " << jacobsthal << std::endl;
+
+	if (end > (long)vec.size() - 1)
+		end = vec.size() - 1;
 	while (begin <= end) {
 		mid = begin + ((end - begin) / 2);
+		// std::cout << "begin: " << begin << " end: " << end << std::endl;
+		// std::cout << "mid: " << mid << std::endl;
+		// std::cout << "mid: " << mid << " addr: " << vec[mid] << std::endl;
 		if (pair->getHigh() < vec[mid]->getHigh())
 			end = mid - 1;
 		else if (pair->getHigh() >= vec[mid]->getHigh()) {
@@ -135,23 +165,30 @@ void binaryInsertVector(std::vector<Pair *> &vec, Pair *pair) {
 	vec.insert(vec.begin() + begin, pair);
 }
 
-void PmergeMe::jacobsthalVector(int current_index, int previous_index) {
-	int i = current_index;
+void PmergeMe::jacobsthalVector(int jac_number, int prev_jac_number, int index) {
+	int i = jac_number - prev_jac_number - 1;
 	if (i > (int)low_vector.size() - 1)
 		i = low_vector.size() - 1;
 	if (low_vector.size() == 0)
 		return;
+	std::cout << "tk: " << jac_number << std::endl;
+	std::cout << "k: " << index << std::endl;
+	std::cout << "i: " << i << std::endl << std::endl;
 	while (i >= 0) {
-		binaryInsertVector(high_vector, low_vector[i]);
+		binaryInsertVector(high_vector, low_vector[i], index);
 		low_vector.erase(low_vector.begin() + i);
 		i--;
 	}
-	jacobsthalVector(previous_index * 2 + current_index, current_index);
+	jacobsthalVector(prev_jac_number * 2 + jac_number, jac_number, index + 1);
 }
 
-void PmergeMe::vectorSort() {
+void PmergeMe::vectorSort(Pair *rest) {
+	std::cout << "vectorSort" << std::endl;
 	std::vector<Pair *> main;
 
+	std::cout << "rest: ";
+	printPair(rest);
+	std::cout << std::endl;
 	main = high_vector;
 	high_vector = std::vector<Pair *>();
 
@@ -160,20 +197,28 @@ void PmergeMe::vectorSort() {
 		high_vector.push_back(main[0]->getHighPair());
 	}
 	else {
-		high_vector.push_back(main[0]);
+		low_vector.push_back(main[0]->getLowPair());
 	}
 	size_t i = 1;
 	while (i < main.size()) {
-		if (main[i]->getLowPair() != NULL) {
+		if (main[i]->getHighPair() != NULL) {
 			high_vector.push_back(main[i]->getHighPair());
+			std::cout << "pushing in high : ";
+			printPair(main[i]->getHighPair());
+			std::cout << std::endl;
 			low_vector.push_back(main[i]->getLowPair());
+			std::cout << "pushing in low : " << main[i]->getLowPair()->getHigh() << std::endl;
 		}
 		else {
-			high_vector.push_back(main[i]);
+			low_vector.push_back(main[i]->getHighPair());
 		}
 		i++;
 	}
-	jacobsthalVector(1, 1);
+	if (rest != NULL)
+		low_vector.push_back(rest);
+	printVector();
+
+	jacobsthalVector(1, 1, 1);
 }
 
 /* ---------------------------------------------- Deque ------------------------------------------------ */
@@ -204,11 +249,12 @@ void PmergeMe::initPairsDeque() {
 				tmp.push_back(new Pair(high_deque[i], high_deque[i + 1]));
 			}
 			else {
-				tmp.push_back(new Pair(high_deque[i]));
+				tmp.push_back(high_deque[i]);
 			}
 		}
 		high_deque = tmp;
 	}
+	gbDeque = high_deque;
 }
 
 void binaryInsertDeque(std::deque<Pair *> &deq, Pair *pair) {

@@ -18,13 +18,15 @@ private:
 
 	std::vector<Pair *> high_vector;
 	std::vector<Pair *> low_vector;
+	std::vector<Pair *> gbVector;
 	void printVector();
-	void vectorSort();
+	void vectorSort(Pair *rest);
 	void initPairsVector();
-	void jacobsthalVector(int current_index, int previous_index);
+	void jacobsthalVector(int jac_number, int previous_jac_number, int index);
 
 	std::deque<Pair *> high_deque;
 	std::deque<Pair *> low_deque;
+	std::deque<Pair *> gbDeque;
 	void printDeque();
 	void dequeSort();
 	void initPairsDeque();
