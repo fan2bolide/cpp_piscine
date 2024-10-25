@@ -120,7 +120,6 @@ void printPairVector(std::vector<Pair *> &vector) {
 }
 
 void PmergeMe::initPairsVector() {
-	std::cout << "init" << std::endl;
 	std::vector<Pair *> tmp;
 	Pair *rest = NULL;
 	for (size_t i = 0; i < high_vector.size(); i += 2) {
@@ -132,7 +131,6 @@ void PmergeMe::initPairsVector() {
 		}
 	}
 	high_vector = tmp;
-	printPairVector(tmp);
 	if (high_vector.size() > 1)
 		initPairsVector();
 	if (high_vector.size() != 0)
@@ -144,16 +142,10 @@ void binaryInsertVector(std::vector<Pair *> &vec, Pair *pair, int jacobsthal) {
 	long end = std::pow(2, jacobsthal) - 1;
 	long mid = 0;
 
-	// std::cout << "inserting " << pair->getHigh() << std::endl;
-	// std::cout << "jcb: " << jacobsthal << std::endl;
-
 	if (end > (long)vec.size() - 1)
 		end = vec.size() - 1;
 	while (begin <= end) {
 		mid = begin + ((end - begin) / 2);
-		// std::cout << "begin: " << begin << " end: " << end << std::endl;
-		// std::cout << "mid: " << mid << std::endl;
-		// std::cout << "mid: " << mid << " addr: " << vec[mid] << std::endl;
 		if (pair->getHigh() < vec[mid]->getHigh())
 			end = mid - 1;
 		else if (pair->getHigh() >= vec[mid]->getHigh()) {
@@ -171,9 +163,6 @@ void PmergeMe::jacobsthalVector(int jac_number, int prev_jac_number, int index) 
 		i = low_vector.size() - 1;
 	if (low_vector.size() == 0)
 		return;
-	std::cout << "tk: " << jac_number << std::endl;
-	std::cout << "k: " << index << std::endl;
-	std::cout << "i: " << i << std::endl << std::endl;
 	while (i >= 0) {
 		binaryInsertVector(high_vector, low_vector[i], index);
 		low_vector.erase(low_vector.begin() + i);
@@ -183,12 +172,8 @@ void PmergeMe::jacobsthalVector(int jac_number, int prev_jac_number, int index) 
 }
 
 void PmergeMe::vectorSort(Pair *rest) {
-	std::cout << "vectorSort" << std::endl;
 	std::vector<Pair *> main;
 
-	std::cout << "rest: ";
-	printPair(rest);
-	std::cout << std::endl;
 	main = high_vector;
 	high_vector = std::vector<Pair *>();
 
@@ -203,11 +188,7 @@ void PmergeMe::vectorSort(Pair *rest) {
 	while (i < main.size()) {
 		if (main[i]->getHighPair() != NULL) {
 			high_vector.push_back(main[i]->getHighPair());
-			std::cout << "pushing in high : ";
-			printPair(main[i]->getHighPair());
-			std::cout << std::endl;
 			low_vector.push_back(main[i]->getLowPair());
-			std::cout << "pushing in low : " << main[i]->getLowPair()->getHigh() << std::endl;
 		}
 		else {
 			low_vector.push_back(main[i]->getHighPair());
@@ -216,8 +197,6 @@ void PmergeMe::vectorSort(Pair *rest) {
 	}
 	if (rest != NULL)
 		low_vector.push_back(rest);
-	printVector();
-
 	jacobsthalVector(1, 1, 1);
 }
 
