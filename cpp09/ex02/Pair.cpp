@@ -27,8 +27,6 @@ Pair::Pair(Pair *pair) : high(pair->high), highPair(pair->highPair), lowPair(pai
 }
 
 Pair::~Pair() {
-	delete highPair;
-	delete lowPair;
 }
 
 Pair Pair::operator=(Pair pair) {

@@ -28,9 +28,9 @@ private:
 	std::deque<Pair *> low_deque;
 	std::deque<Pair *> gbDeque;
 	void printDeque();
-	void dequeSort();
+	void dequeSort(Pair *rest);
 	void initPairsDeque();
-	void jacobsthalDeque(int current_index, int previous_index);
+	void jacobsthalDeque(int current_index, int previous_index, int index);
 public:
 	PmergeMe(int argc, char **argv);
 	~PmergeMe();
