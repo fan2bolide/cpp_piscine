@@ -50,21 +50,16 @@ int PmergeMe::parseInput(int argc, char **input) {
 }
 
 void isSort(std::vector<Pair *> &vec) {
-	for (size_t i = 0 ; i < vec.size() - 1 ; i++) {
-		if (vec[i]->getHigh() > vec[i + 1]->getHigh()) {
-			std::cout << "not sorted" << std::endl;
-			return;
-		}
-	}
+	for (size_t i = 0 ; i < vec.size() - 1 ; i++)
+		if (vec[i]->getHigh() > vec[i + 1]->getHigh())
+			return (std::cout << "not sorted" << std::endl, (void)0);
 	std::cout << "sorted" << std::endl;
 }
+
 void isSort(std::deque<Pair *> &deq) {
-	for (size_t i = 0 ; i < deq.size() - 1 ; i++) {
-		if (deq[i]->getHigh() > deq[i + 1]->getHigh()) {
-			std::cout << "not sorted" << std::endl;
-			return;
-		}
-	}
+	for (size_t i = 0 ; i < deq.size() - 1 ; i++)
+		if (deq[i]->getHigh() > deq[i + 1]->getHigh())
+			return (std::cout << "not sorted" << std::endl, (void)0);
 	std::cout << "sorted" << std::endl;
 }
 
