@@ -58,9 +58,9 @@ void isSort(std::vector<Pair *> &vec) {
 	}
 	std::cout << "sorted" << std::endl;
 }
-void isSort(std::deque<Pair *> &vec) {
-	for (size_t i = 0 ; i < vec.size() - 1 ; i++) {
-		if (vec[i]->getHigh() > vec[i + 1]->getHigh()) {
+void isSort(std::deque<Pair *> &deq) {
+	for (size_t i = 0 ; i < deq.size() - 1 ; i++) {
+		if (deq[i]->getHigh() > deq[i + 1]->getHigh()) {
 			std::cout << "not sorted" << std::endl;
 			return;
 		}
